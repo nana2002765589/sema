@@ -1,0 +1,136 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import projects from '../../assets/projects.json';
+
+export function getStaticPaths() {
+    return projects.map((project, index) => {
+        return {
+            params: { id: String(index) },
+            props: { project }
+        };
+    });
+}
+
+const { project } = Astro.props;
+---
+
+<Layout title={project.title}>
+    <div class="project-details-container">
+        <a href="/">&larr; Back to all projects</a>
+        <h1>{project.title}</h1>
+        <div class="categories">
+            {project.category.map(cat => <span class="category">{cat}</span>)}
+        </div>
+
+        <details open>
+            <summary>
+                <h2>あらすじ</h2>
+            </summary>
+            <div class="details-content">
+                <p>{project.synopsis}</p>
+            </div>
+        </details>
+
+        <details>
+            <summary>
+                <h2>キャラクター紹介</h2>
+            </summary>
+            <div class="details-content">
+                <p>{project.characters}</p>
+            </div>
+        </details>
+
+        <details>
+            <summary>
+                <h2>舞台背景</h2>
+            </summary>
+            <div class="details-content">
+                <p>{project.setting}</p>
+            </div>
+        </details>
+
+        <details>
+            <summary>
+                <h2>地図</h2>
+            </summary>
+            <div class="details-content">
+                {project.map_url && <img src={project.map_url} alt={`${project.title} Map`} />}
+            </div>
+        </details>
+
+        <details>
+            <summary>
+                <h2>解説</h2>
+            </summary>
+            <div class="details-content">
+                <p>{project.commentary}</p>
+            </div>
+        </details>
+
+        <details>
+            <summary>
+                <h2>考察</h2>
+            </summary>
+            <div class="details-content">
+                <p>{project.analysis}</p>
+            </div>
+        </details>
+    </div>
+</Layout>
+
+<style>
+    .project-details-container {
+        max-width: 800px;
+        margin: 0 auto;
+        line-height: 1.6;
+    }
+    a {
+        color: #007bff;
+        text-decoration: none;
+    }
+    a:hover {
+        text-decoration: underline;
+    }
+    h1 {
+        margin-top: 1rem;
+        border-bottom: 2px solid #eee;
+        padding-bottom: 0.5rem;
+    }
+    h2 {
+        display: inline;
+        font-size: 1.25rem;
+    }
+    .categories {
+        margin: 1rem 0;
+    }
+    .category {
+        display: inline-block;
+        background-color: #eee;
+        padding: 0.25em 0.75em;
+        border-radius: 15px;
+        font-size: 0.8rem;
+        margin-right: 0.5rem;
+    }
+    details {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        margin-top: 1.5rem;
+    }
+    details[open] {
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    summary {
+        padding: 1rem;
+        cursor: pointer;
+        font-weight: bold;
+    }
+    .details-content {
+        padding: 0 1rem 1rem 1rem;
+    }
+    .details-content img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        margin-top: 1rem;
+    }
+</style>

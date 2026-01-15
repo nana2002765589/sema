@@ -1,0 +1,150 @@
+---
+import Layout from '../layouts/Layout.astro';
+import projects from '../assets/projects.json';
+---
+
+<Layout title="My Page">
+  <main class="bg-gray-50 min-h-screen">
+    <div class="container mx-auto p-4 max-w-4xl">
+      <!-- Profile Header -->
+      <header class="flex items-center p-4">
+        <div class="w-20 h-20 md:w-32 md:h-32">
+          <img src="/icons/user.svg" alt="User Profile" class="rounded-full border p-1">
+        </div>
+        <div class="ml-6 flex-grow">
+          <div class="flex items-center">
+            <h1 class="text-2xl font-light">my_username</h1>
+            <button class="ml-4 px-4 py-1 text-sm font-semibold border rounded">Edit Profile</button>
+          </div>
+          <div class="flex mt-4 space-x-8">
+            <div><span class="font-semibold">0</span> posts</div>
+            <div><span class="font-semibold">123</span> followers</div>
+            <div><span class="font-semibold">456</span> following</div>
+          </div>
+          <div class="mt-4">
+            <p class="font-semibold">My Name</p>
+            <p class="text-gray-600">This is my bio. I love watching anime and recording my thoughts!</p>
+          </div>
+        </div>
+      </header>
+      
+      <!-- Tabs -->
+      <div class="border-t mt-4">
+        <div class="flex justify-center -mb-px">
+          <a href="#" class="text-sm font-semibold text-gray-800 border-t-2 border-black py-3 px-4">POSTS</a>
+          <a href="#" class="text-sm font-semibold text-gray-500 py-3 px-4">SAVED</a>
+          <a href="#" class="text-sm font-semibold text-gray-500 py-3 px-4">TAGGED</a>
+        </div>
+      </div>
+      
+      <!-- Impression Form -->
+      <section id="impression-form" class="my-8 p-4 bg-white border rounded-lg">
+        <h2 class="text-lg font-semibold mb-4">Record New Impression</h2>
+        <form>
+          <div class="mb-4">
+            <label for="project-select" class="block text-gray-700 text-sm font-bold mb-2">Project:</label>
+            <select id="project-select" class="shadow-sm border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+              <option value="">--Choose a project--</option>
+              {projects.map(project => (
+                <option value={project.id}>{project.title}</option>
+              ))}
+            </select>
+          </div>
+          <div class="mb-4">
+            <label for="impression-text" class="block text-gray-700 text-sm font-bold mb-2">Thoughts:</label>
+            <textarea id="impression-text" rows="4" class="shadow-sm appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Your impressions..."></textarea>
+          </div>
+          <div class="flex justify-end">
+            <button id="save-impression" type="button" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+              Post
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Posts Grid -->
+      <div id="saved-impressions-container" class="grid grid-cols-3 gap-1 md:gap-4">
+        <!-- Saved impressions will be loaded here as image posts -->
+      </div>
+    </div>
+  </main>
+
+  <script define:vars={{ projects }}>
+    document.addEventListener('DOMContentLoaded', () => {
+      const saveButton = document.getElementById('save-impression');
+      const projectSelect = document.getElementById('project-select') as HTMLSelectElement;
+      const impressionText = document.getElementById('impression-text') as HTMLTextAreaElement;
+      const impressionsContainer = document.getElementById('saved-impressions-container');
+
+      const getImpressions = () => {
+        const impressionsJSON = localStorage.getItem('impressions');
+        return impressionsJSON ? JSON.parse(impressionsJSON) : [];
+      };
+
+      const saveImpressions = (impressions) => {
+        localStorage.setItem('impressions', JSON.stringify(impressions));
+      };
+
+      const renderImpressions = () => {
+        const impressions = getImpressions();
+        if (impressionsContainer) {
+            impressionsContainer.innerHTML = '';
+        }
+        
+        // Update post count
+        const postCountEl = document.querySelector('.flex.mt-4.space-x-8 div:first-child span');
+        if (postCountEl) {
+            postCountEl.textContent = impressions.length;
+        }
+
+        impressions.forEach(impression => {
+          const project = projects.find(p => p.id.toString() === impression.projectId);
+          if (!project) return;
+          
+          const postElement = document.createElement('div');
+          postElement.className = 'relative aspect-square bg-gray-200';
+          
+          postElement.innerHTML = `
+            <img src="${project.image || 'https://via.placeholder.com/500'}" alt="${project.title}" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-40 transition-all duration-300 flex items-center justify-center opacity-0 hover:opacity-100">
+                <p class="text-white text-center p-4">${impression.text}</p>
+            </div>
+          `;
+          if (impressionsContainer) {
+            impressionsContainer.appendChild(postElement);
+          }
+        });
+      };
+
+      if (saveButton && projectSelect && impressionText) {
+          saveButton.addEventListener('click', () => {
+            const projectId = projectSelect.value;
+            const text = impressionText.value;
+
+            if (!projectId || !text) {
+              alert('Please select a project and write your thoughts.');
+              return;
+            }
+
+            const impressions = getImpressions();
+            const newImpression = {
+              id: Date.now(),
+              projectId,
+              text,
+            };
+            impressions.unshift(newImpression); // Add to the beginning for chronological order
+            saveImpressions(impressions);
+
+            renderImpressions();
+
+            // Reset form
+            projectSelect.value = '';
+            impressionText.value = '';
+          });
+      }
+
+      // Initial render
+      renderImpressions();
+    });
+  </script>
+</Layout>

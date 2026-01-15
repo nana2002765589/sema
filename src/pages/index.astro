@@ -1,16 +1,158 @@
 ---
-
+import Layout from '../layouts/Layout.astro';
+import projects from "../assets/projects.json";
+const allCategories = projects.flatMap(p => p.category);
+const uniqueCategories = [...new Set(allCategories)];
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title="SEMA - Home">
+	<section>
+		<h2>Works</h2>
+
+		<div class="filter-container" id="category-filters">
+			<strong>Category:</strong>
+			<button class="filter-btn active" data-category="All">All</button>
+			{uniqueCategories.map(category => (
+				<button class="filter-btn" data-category={category}>{category}</button>
+			))}
+		</div>
+
+		<div class="filter-container" id="visibility-filters">
+			<strong>Visibility:</strong>
+			<button class="filter-btn active" data-visibility="All">すべて</button>
+			<button class="filter-btn" data-visibility="public">公開</button>
+			<button class="filter-btn" data-visibility="unlisted">限定公開</button>
+			<button class="filter-btn" data-visibility="private">非公開</button>
+		</div>
+
+		<div class="project-list">
+			{projects.map((project) => (
+				<a href={`/projects/${project.id}`} class="card-link" data-categories={project.category.join(' ')} data-visibility={project.visibility}>
+					<div class="card">
+						<h3>{project.title}</h3>
+						<p>{project.synopsis}</p>
+						<div class="categories">
+							{project.category.map(cat => <span class="category">{cat}</span>)}
+						</div>
+					</div>
+				</a>
+			))}
+		</div>
+	</section>
+
+	<script>
+		const categoryFilters = document.querySelector('#category-filters');
+		const visibilityFilters = document.querySelector('#visibility-filters');
+		const projectLinks = document.querySelectorAll('.card-link');
+
+		let selectedCategory = 'All';
+		let selectedVisibility = 'All';
+
+		function applyFilters() {
+			projectLinks.forEach(link => {
+				const cardCategories = link.dataset.categories.split(' ');
+				const cardVisibility = link.dataset.visibility;
+
+				const categoryMatch = selectedCategory === 'All' || cardCategories.includes(selectedCategory);
+				const visibilityMatch = selectedVisibility === 'All' || cardVisibility === selectedVisibility;
+
+				if (categoryMatch && visibilityMatch) {
+					link.style.display = 'flex';
+				} else {
+					link.style.display = 'none';
+				}
+			});
+		}
+
+		categoryFilters.addEventListener('click', (e) => {
+			const target = e.target;
+			if (!target.matches('.filter-btn')) return;
+
+			categoryFilters.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+			target.classList.add('active');
+			selectedCategory = target.dataset.category;
+			applyFilters();
+		});
+
+		visibilityFilters.addEventListener('click', (e) => {
+			const target = e.target;
+			if (!target.matches('.filter-btn')) return;
+			
+			visibilityFilters.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+			target.classList.add('active');
+			selectedVisibility = target.dataset.visibility;
+			applyFilters();
+		});
+
+		// Initial filter application on page load
+		applyFilters();
+	</script>
+</Layout>
+
+<style>
+	.filter-container {
+		margin-bottom: 1rem;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+		align-items: center;
+	}
+	.filter-btn {
+		background-color: #eee;
+		border: 1px solid #ddd;
+		padding: 0.5em 1em;
+		border-radius: 20px;
+		cursor: pointer;
+		transition: background-color 0.2s;
+	}
+	.filter-btn:hover {
+		background-color: #ddd;
+	}
+	.filter-btn.active {
+		background-color: #333;
+		color: white;
+		border-color: #333;
+	}
+	.project-list {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+		gap: 1rem;
+	}
+	.card-link {
+		text-decoration: none;
+		color: inherit;
+		display: flex; /* Make the link a flex container */
+	}
+	.card {
+		border: 1px solid #ddd;
+		border-radius: 8px;
+		padding: 1rem;
+		box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+		transition: box-shadow 0.2s, transform 0.2s;
+		display: flex; /* Make the card a flex container */
+		flex-direction: column; /* Arrange content vertically */
+		width: 100%; /* Ensure card fills the link */
+	}
+	.card p {
+		flex-grow: 1; /* Allow the paragraph to grow */
+	}
+	.card:hover {
+		box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+		transform: translateY(-2px);
+	}
+	.card h3 {
+		margin-top: 0;
+	}
+	.categories {
+		margin-top: 1rem;
+	}
+	.category {
+		display: inline-block;
+		background-color: #eee;
+		padding: 0.25em 0.75em;
+		border-radius: 15px;
+		font-size: 0.8rem;
+		margin-right: 0.5rem;
+	}
+</style>
+
