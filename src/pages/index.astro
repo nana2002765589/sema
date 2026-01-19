@@ -1,8 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import projects from "../assets/projects.json";
+const base = import.meta.env.BASE_URL;
 const allCategories = projects.flatMap(p => p.category);
 const uniqueCategories = [...new Set(allCategories)];
+
 ---
 
 <Layout title="SEMA - Home">
@@ -27,7 +29,7 @@ const uniqueCategories = [...new Set(allCategories)];
 
 		<div class="project-list">
 			{projects.map((project) => (
-				<a href={`/projects/${project.id}`} class="card-link" data-categories={project.category.join(' ')} data-visibility={project.visibility}>
+				<a href={`${base}/projects/${project.id}`} class="card-link" data-categories={project.category.join(' ')} data-visibility={project.visibility}>
 					<div class="card">
 						<h3>{project.title}</h3>
 						<p>{project.synopsis}</p>
