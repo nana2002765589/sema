@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import projects from "../assets/projects.json";
+import SubHeader from '../components/SubHeader.astro';
 const base = import.meta.env.BASE_URL;
 const allCategories = projects.flatMap(p => p.category);
 const uniqueCategories = [...new Set(allCategories)];
@@ -8,6 +9,8 @@ const uniqueCategories = [...new Set(allCategories)];
 ---
 
 <Layout title="SEMA - Home">
+	<SubHeader />
+
 	<section>
 		<h2>Works</h2>
 

@@ -1,0 +1,50 @@
+---
+const { pathname } = Astro.url;
+const base = import.meta.env.BASE_URL;
+
+const tabs = [
+    { name: '作品', href: base === '/' ? '/' : base },
+    { name: '考察', href: `${base}/insights` }
+]
+---
+<div class="sub-header">
+    <nav>
+        {tabs.map(tab => (
+            <a href={tab.href} class:list={{ active: tab.href === pathname }}>
+                {tab.name}
+            </a>
+        ))}
+    </nav>
+</div>
+
+<style>
+    .sub-header {
+        background-color: #ffffff;
+        border-bottom: 1px solid #e7e7e7;
+        position: sticky;
+        top: 60px; /* Assuming header is 60px tall */
+        z-index: 900;
+    }
+    nav {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    a {
+        padding: 1rem 0.5rem;
+        text-decoration: none;
+        color: #666;
+        font-weight: 500;
+        border-bottom: 2px solid transparent;
+        transition: color 0.2s, border-color 0.2s;
+    }
+    a:hover {
+        color: #000;
+    }
+    a.active {
+        color: #000;
+        border-bottom-color: #000;
+    }
+</style>
