@@ -27,7 +27,7 @@ const uniqueCategories = [...new Set(allCategories)];
 
 		<div class="project-list">
 			{projects.map((project) => (
-				<a href={`/sema/projects/${project.id}`} class="card-link" data-categories={project.category.join(' ')} data-visibility={project.visibility}>
+				<a href={`/projects/${project.id}`} class="card-link" data-categories={project.category.join(' ')} data-visibility={project.visibility}>
 					<div class="card">
 						<h3>{project.title}</h3>
 						<p>{project.synopsis}</p>

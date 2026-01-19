@@ -1,0 +1,56 @@
+<footer>
+  <nav>
+    <a href="/">
+      <img src="./icons/grid.svg" alt="Projects" />
+      <span>作品</span>
+    </a>
+    <a href="/insights">
+      <img src="./icons/lightbulb.svg" alt="Insights" />
+      <span>考察</span>
+    </a>
+    <a href="#">
+      <img src="./icons/search.svg" alt="Search" />
+      <span>検索</span>
+    </a>
+    <a href="#">
+      <img src="./icons/bookmark.svg" alt="Bookmark" />
+      <span>ブックマーク</span>
+    </a>
+    <a href="/mypage">
+      <img src="./icons/user.svg" alt="My Page" />
+      <span>マイページ</span>
+    </a>
+  </nav>
+</footer>
+
+<style>
+  footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #f8f8f8;
+    border-top: 1px solid #e7e7e7;
+    z-index: 1000;
+  }
+  nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0.5rem 0;
+  }
+  a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: #333;
+    font-size: 0.75rem;
+    gap: 4px;
+  }
+  img {
+    width: 24px;
+    height: 24px;
+  }
+</style>

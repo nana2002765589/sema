@@ -9,7 +9,7 @@ import projects from '../assets/projects.json';
       <!-- Profile Header -->
       <header class="flex items-center p-4">
         <div class="w-20 h-20 md:w-32 md:h-32">
-          <img src="/sema/icons/user.svg" alt="User Profile" class="rounded-full border p-1">
+          <img src="./icons/user.svg" alt="User Profile" class="rounded-full border p-1">
         </div>
         <div class="ml-6 flex-grow">
           <div class="flex items-center">
@@ -54,9 +54,15 @@ import projects from '../assets/projects.json';
             <label for="impression-text" class="block text-gray-700 text-sm font-bold mb-2">Thoughts:</label>
             <textarea id="impression-text" rows="4" class="shadow-sm appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Your impressions..."></textarea>
           </div>
-          <div class="flex justify-end">
-            <button id="save-impression" type="button" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-              Post
+          <div class="flex justify-end gap-2">
+            <button data-visibility="public" type="button" class="save-impression-btn bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+              Public
+            </button>
+            <button data-visibility="unlisted" type="button" class="save-impression-btn bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+              Unlisted
+            </button>
+            <button data-visibility="private" type="button" class="save-impression-btn bg-black hover:bg-gray-800 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+              Private
             </button>
           </div>
         </form>
@@ -71,7 +77,6 @@ import projects from '../assets/projects.json';
 
   <script define:vars={{ projects }}>
     document.addEventListener('DOMContentLoaded', () => {
-      const saveButton = document.getElementById('save-impression');
       const projectSelect = document.getElementById('project-select') as HTMLSelectElement;
       const impressionText = document.getElementById('impression-text') as HTMLTextAreaElement;
       const impressionsContainer = document.getElementById('saved-impressions-container');
@@ -116,10 +121,13 @@ import projects from '../assets/projects.json';
         });
       };
 
-      if (saveButton && projectSelect && impressionText) {
-          saveButton.addEventListener('click', () => {
+      const saveButtons = document.querySelectorAll('.save-impression-btn');
+      if (saveButtons.length > 0 && projectSelect && impressionText) {
+        saveButtons.forEach(button => {
+          button.addEventListener('click', () => {
             const projectId = projectSelect.value;
             const text = impressionText.value;
+            const visibility = button.getAttribute('data-visibility');
 
             if (!projectId || !text) {
               alert('Please select a project and write your thoughts.');
@@ -131,6 +139,7 @@ import projects from '../assets/projects.json';
               id: Date.now(),
               projectId,
               text,
+              visibility,
             };
             impressions.unshift(newImpression); // Add to the beginning for chronological order
             saveImpressions(impressions);
@@ -141,6 +150,7 @@ import projects from '../assets/projects.json';
             projectSelect.value = '';
             impressionText.value = '';
           });
+        });
       }
 
       // Initial render
