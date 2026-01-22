@@ -1,8 +1,132 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import insights from "../assets/insights.json";
+import SubHeader from '../components/SubHeader.astro';
+
+const allCategories = insights.flatMap(p => p.category);
+const uniqueCategories = [...new Set(allCategories)];
 ---
 
-<Layout title="考察">
-  <h1>考察</h1>
-  <p>ここに考察コンテンツが入ります。</p>
+<Layout title="SEMA - 考察">
+	<SubHeader />
+
+	<section>
+		<h2>Insights</h2>
+
+		<div class="filter-container" id="category-filters">
+			<strong>Category:</strong>
+			<button class="filter-btn active" data-category="All">All</button>
+			{uniqueCategories.map(category => (
+				<button class="filter-btn" data-category={category}>{category}</button>
+			))}
+		</div>
+
+		<div class="insight-list">
+			{insights.map((insight) => (
+				<div class="card" data-categories={insight.category.join(' ')}>
+					<h3>{insight.title}</h3>
+					<p>{insight.content}</p>
+					<div class="categories">
+						{insight.category.map(cat => <span class="category">{cat}</span>)}
+					</div>
+				</div>
+			))}
+		</div>
+	</section>
+
+	<script>
+		const categoryFilters = document.querySelector('#category-filters');
+		const insightCards = document.querySelectorAll('.card');
+
+		let selectedCategory = 'All';
+
+		function applyFilters() {
+			insightCards.forEach(card => {
+				const cardCategories = card.dataset.categories.split(' ');
+
+				const categoryMatch = selectedCategory === 'All' || cardCategories.includes(selectedCategory);
+
+				if (categoryMatch) {
+					card.style.display = 'flex';
+				} else {
+					card.style.display = 'none';
+				}
+			});
+		}
+
+		categoryFilters.addEventListener('click', (e) => {
+			const target = e.target;
+			if (!target.matches('.filter-btn')) return;
+
+			categoryFilters.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+			target.classList.add('active');
+			selectedCategory = target.dataset.category;
+			applyFilters();
+		});
+
+		// Initial filter application on page load
+		applyFilters();
+	</script>
 </Layout>
+
+<style>
+	.filter-container {
+		margin-bottom: 1rem;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+		align-items: center;
+	}
+	.filter-btn {
+		background-color: #eee;
+		border: 1px solid #ddd;
+		padding: 0.5em 1em;
+		border-radius: 20px;
+		cursor: pointer;
+		transition: background-color 0.2s;
+	}
+	.filter-btn:hover {
+		background-color: #ddd;
+	}
+	.filter-btn.active {
+		background-color: #333;
+		color: white;
+		border-color: #333;
+	}
+	.insight-list {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+		gap: 1rem;
+	}
+	.card {
+		border: 1px solid #ddd;
+		border-radius: 8px;
+		padding: 1rem;
+		box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+		transition: box-shadow 0.2s, transform 0.2s;
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+	}
+	.card p {
+		flex-grow: 1;
+	}
+	.card:hover {
+		box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+		transform: translateY(-2px);
+	}
+	.card h3 {
+		margin-top: 0;
+	}
+	.categories {
+		margin-top: 1rem;
+	}
+	.category {
+		display: inline-block;
+		background-color: #eee;
+		padding: 0.25em 0.75em;
+		border-radius: 15px;
+		font-size: 0.8rem;
+		margin-right: 0.5rem;
+	}
+</style>
