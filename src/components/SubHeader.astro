@@ -2,6 +2,9 @@
 const { pathname } = Astro.url;
 const base = import.meta.env.BASE_URL;
 
+// Normalize pathname to remove trailing slash if it's not the root
+const normalizedPathname = pathname.length > 1 && pathname.endsWith('/') ? pathname.slice(0, -1) : pathname;
+
 const tabs = [
     { name: '作品', href: base === '/' ? '/' : base },
     { name: '考察', href: `${base}/insights` }
@@ -9,11 +12,21 @@ const tabs = [
 ---
 <div class="sub-header">
     <nav>
-        {tabs.map(tab => (
-            <a href={tab.href} class:list={{ active: tab.href === pathname }}>
-                {tab.name}
-            </a>
-        ))}
+        {tabs.map(tab => {
+            let isActive = false;
+            if (tab.name === '作品') {
+                const projectsRoot = base === '/' ? '/' : base;
+                // Active if it's the root or a projects page
+                isActive = normalizedPathname === projectsRoot || normalizedPathname.startsWith(`${projectsRoot}/projects`);
+            } else {
+                isActive = normalizedPathname === tab.href;
+            }
+            return (
+                <a href={tab.href} class:list={{ active: isActive }}>
+                    {tab.name}
+                </a>
+            );
+        })}
     </nav>
 </div>
 
@@ -21,9 +34,6 @@ const tabs = [
     .sub-header {
         background-color: #ffffff;
         border-bottom: 1px solid #e7e7e7;
-        position: sticky;
-        top: 60px; /* Assuming header is 60px tall */
-        z-index: 900;
     }
     nav {
         display: flex;

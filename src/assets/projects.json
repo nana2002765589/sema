@@ -12,7 +12,8 @@
     "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
     "commentary": "解説のサンプルテキスト。",
     "analysis": "考察のサンプルテキスト。",
-    "visibility": "public"
+    "visibility": "public",
+    "views": 5678
   },
   {
     "id": 2,
@@ -27,7 +28,8 @@
     "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
     "commentary": "解説のサンプルテキスト。",
     "analysis": "考察のサンプルテキスト。",
-    "visibility": "public"
+    "visibility": "public",
+    "views": 8765
   },
   {
     "id": 3,
@@ -42,7 +44,8 @@
     "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
     "commentary": "解説のサンプルテキスト。",
     "analysis": "考察のサンプルテキスト。",
-    "visibility": "public"
+    "visibility": "public",
+    "views": 1234
   },
   {
     "id": 4,
@@ -57,7 +60,8 @@
     "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
     "commentary": "解説のサンプルテキスト。",
     "analysis": "考察のサンプルテキスト。",
-    "visibility": "public"
+    "visibility": "public",
+    "views": 4321
   },
   {
     "id": 5,
@@ -72,7 +76,8 @@
     "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
     "commentary": "解説のサンプルテキスト。",
     "analysis": "考察のサンプルテキスト。",
-    "visibility": "public"
+    "visibility": "public",
+    "views": 9876
   },
   {
     "id": 6,
@@ -87,7 +92,8 @@
     "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
     "commentary": "解説のサンプルテキスト。",
     "analysis": "考察のサンプルテキスト。",
-    "visibility": "public"
+    "visibility": "public",
+    "views": 2345
   },
   {
     "id": 7,
@@ -102,7 +108,8 @@
     "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
     "commentary": "解説のサンプルテキスト。",
     "analysis": "考察のサンプルテキスト。",
-    "visibility": "public"
+    "visibility": "public",
+    "views": 7890
   },
   {
     "id": 8,
@@ -117,7 +124,8 @@
     "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
     "commentary": "解説のサンプルテキスト。",
     "analysis": "考察のサンプルテキスト。",
-    "visibility": "public"
+    "visibility": "public",
+    "views": 3456
   },
   {
     "id": 9,
@@ -132,7 +140,8 @@
     "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
     "commentary": "解説のサンプルテキスト。",
     "analysis": "考察のサンプルテキスト。",
-    "visibility": "public"
+    "visibility": "public",
+    "views": 6543
   },
   {
     "id": 10,
@@ -147,7 +156,8 @@
     "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
     "commentary": "解説のサンプルテキスト。",
     "analysis": "考察のサンプルテキスト。",
-    "visibility": "public"
+    "visibility": "public",
+    "views": 1111
   },
   {
     "id": 11,
@@ -162,7 +172,8 @@
     "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
     "commentary": "解説のサンプルテキスト。",
     "analysis": "考察のサンプルテキスト。",
-    "visibility": "public"
+    "visibility": "public",
+    "views": 2222
   },
   {
     "id": 12,
@@ -177,7 +188,8 @@
     "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
     "commentary": "解説のサンプルテキスト。",
     "analysis": "考察のサンプルテキスト。",
-    "visibility": "public"
+    "visibility": "public",
+    "views": 3333
   },
   {
     "id": 13,
@@ -192,7 +204,8 @@
     "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
     "commentary": "解説のサンプルテキスト。",
     "analysis": "考察のサンプルテキスト。",
-    "visibility": "public"
+    "visibility": "public",
+    "views": 4444
   },
   {
     "id": 14,
@@ -207,7 +220,8 @@
     "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
     "commentary": "解説のサンプルテキスト。",
     "analysis": "考察のサンプルテキスト。",
-    "visibility": "public"
+    "visibility": "public",
+    "views": 5555
   },
   {
     "id": 15,
@@ -222,7 +236,8 @@
     "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
     "commentary": "解説のサンプルテキスト。",
     "analysis": "考察のサンプルテキスト。",
-    "visibility": "public"
+    "visibility": "public",
+    "views": 6666
   },
   {
     "id": 16,
@@ -237,7 +252,8 @@
     "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
     "commentary": "解説のサンプルテキスト。",
     "analysis": "考察のサンプルテキスト。",
-    "visibility": "unlisted"
+    "visibility": "unlisted",
+    "views": 7777
   },
   {
     "id": 17,
@@ -252,7 +268,8 @@
     "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
     "commentary": "解説のサンプルテキスト。",
     "analysis": "考察のサンプルテキスト。",
-    "visibility": "unlisted"
+    "visibility": "unlisted",
+    "views": 8888
   },
   {
     "id": 18,
@@ -267,7 +284,8 @@
     "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
     "commentary": "解説のサンプルテキスト。",
     "analysis": "考察のサンプルテキスト。",
-    "visibility": "unlisted"
+    "visibility": "unlisted",
+    "views": 9999
   },
   {
     "id": 19,
@@ -282,7 +300,8 @@
     "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
     "commentary": "解説のサンプルテキスト。",
     "analysis": "考察のサンプルテキスト。",
-    "visibility": "unlisted"
+    "visibility": "unlisted",
+    "views": 1010
   },
   {
     "id": 20,
@@ -297,7 +316,8 @@
     "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
     "commentary": "解説のサンプルテキスト。",
     "analysis": "考察のサンプルテキスト。",
-    "visibility": "unlisted"
+    "visibility": "unlisted",
+    "views": 2020
   },
   {
     "id": 21,
@@ -312,7 +332,8 @@
     "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
     "commentary": "解説のサンプルテキスト。",
     "analysis": "考察のサンプルテキスト。",
-    "visibility": "unlisted"
+    "visibility": "unlisted",
+    "views": 3030
   },
   {
     "id": 22,
@@ -327,7 +348,8 @@
     "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
     "commentary": "解説のサンプルテキスト。",
     "analysis": "考察のサンプルテキスト。",
-    "visibility": "unlisted"
+    "visibility": "unlisted",
+    "views": 4040
   },
   {
     "id": 23,
@@ -342,7 +364,8 @@
     "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
     "commentary": "解説のサンプルテキスト。",
     "analysis": "考察のサンプルテキスト。",
-    "visibility": "unlisted"
+    "visibility": "unlisted",
+    "views": 5050
   },
   {
     "id": 24,
@@ -357,7 +380,8 @@
     "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
     "commentary": "解説のサンプルテキスト。",
     "analysis": "考察のサンプルテキスト。",
-    "visibility": "unlisted"
+    "visibility": "unlisted",
+    "views": 6060
   },
   {
     "id": 25,
@@ -372,7 +396,8 @@
     "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
     "commentary": "解説のサンプルテキスト。",
     "analysis": "考察のサンプルテキスト。",
-    "visibility": "unlisted"
+    "visibility": "unlisted",
+    "views": 7070
   },
   {
     "id": 26,
@@ -387,7 +412,8 @@
     "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
     "commentary": "解説のサンプルテキスト。",
     "analysis": "考察のサンプルテキスト。",
-    "visibility": "unlisted"
+    "visibility": "unlisted",
+    "views": 8080
   },
   {
     "id": 27,
@@ -402,7 +428,8 @@
     "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
     "commentary": "解説のサンプルテキスト。",
     "analysis": "考察のサンプルテキスト。",
-    "visibility": "unlisted"
+    "visibility": "unlisted",
+    "views": 9090
   },
   {
     "id": 28,
@@ -417,7 +444,8 @@
     "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
     "commentary": "解説のサンプルテキスト。",
     "analysis": "考察のサンプルテキスト。",
-    "visibility": "unlisted"
+    "visibility": "unlisted",
+    "views": 1212
   },
   {
     "id": 29,
@@ -432,7 +460,8 @@
     "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
     "commentary": "解説のサンプルテキスト。",
     "analysis": "考察のサンプルテキスト。",
-    "visibility": "unlisted"
+    "visibility": "unlisted",
+    "views": 2323
   },
   {
     "id": 30,
@@ -447,7 +476,8 @@
     "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
     "commentary": "解説のサンプルテキスト。",
     "analysis": "考察のサンプルテキスト。",
-    "visibility": "unlisted"
+    "visibility": "unlisted",
+    "views": 3434
   },
   {
     "id": 31,
@@ -462,7 +492,8 @@
     "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
     "commentary": "解説のサンプルテキスト。",
     "analysis": "考察のサンプルテキスト。",
-    "visibility": "public"
+    "visibility": "public",
+    "views": 4545
   },
   {
     "id": 32,
@@ -477,7 +508,8 @@
     "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
     "commentary": "解説のサンプルテキスト。",
     "analysis": "考察のサンプルテキスト。",
-    "visibility": "public"
+    "visibility": "public",
+    "views": 5656
   },
   {
     "id": 33,
@@ -492,7 +524,8 @@
     "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
     "commentary": "解説のサンプルテキスト。",
     "analysis": "考察のサンプルテキスト。",
-    "visibility": "public"
+    "visibility": "public",
+    "views": 6767
   },
   {
     "id": 34,
@@ -507,7 +540,8 @@
     "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
     "commentary": "解説のサンプルテキスト。",
     "analysis": "考察のサンプルテキスト。",
-    "visibility": "public"
+    "visibility": "public",
+    "views": 7878
   },
   {
     "id": 35,
@@ -522,7 +556,8 @@
     "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
     "commentary": "解説のサンプルテキスト。",
     "analysis": "考察のサンプルテキスト。",
-    "visibility": "public"
+    "visibility": "public",
+    "views": 8989
   },
   {
     "id": 36,
@@ -537,7 +572,8 @@
     "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
     "commentary": "解説のサンプルテキスト。",
     "analysis": "考察のサンプルテキスト。",
-    "visibility": "public"
+    "visibility": "public",
+    "views": 9000
   },
   {
     "id": 37,
@@ -552,7 +588,8 @@
     "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
     "commentary": "解説のサンプルテキスト。",
     "analysis": "考察のサンプルテキスト。",
-    "visibility": "public"
+    "visibility": "public",
+    "views": 1313
   },
   {
     "id": 38,
@@ -567,7 +604,8 @@
     "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
     "commentary": "解説のサンプルテキスト。",
     "analysis": "考察のサンプルテキスト。",
-    "visibility": "public"
+    "visibility": "public",
+    "views": 2424
   },
   {
     "id": 39,
@@ -582,7 +620,8 @@
     "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
     "commentary": "解説のサンプルテキスト。",
     "analysis": "考察のサンプルテキスト。",
-    "visibility": "public"
+    "visibility": "public",
+    "views": 3535
   },
   {
     "id": 40,
@@ -597,7 +636,8 @@
     "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
     "commentary": "解説のサンプルテキスト。",
     "analysis": "考察のサンプルテキスト。",
-    "visibility": "public"
+    "visibility": "public",
+    "views": 4646
   },
   {
     "id": 41,
@@ -612,7 +652,8 @@
     "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
     "commentary": "解説のサンプルテキスト。",
     "analysis": "考察のサンプルテキスト。",
-    "visibility": "unlisted"
+    "visibility": "unlisted",
+    "views": 5757
   },
   {
     "id": 42,
@@ -627,7 +668,8 @@
     "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
     "commentary": "解説のサンプルテキスト。",
     "analysis": "考察のサンプルテキスト。",
-    "visibility": "unlisted"
+    "visibility": "unlisted",
+    "views": 6868
   },
   {
     "id": 43,
@@ -642,7 +684,8 @@
     "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
     "commentary": "解説のサンプルテキスト。",
     "analysis": "考察のサンプルテキスト。",
-    "visibility": "unlisted"
+    "visibility": "unlisted",
+    "views": 7979
   },
   {
     "id": 44,
@@ -657,7 +700,8 @@
     "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
     "commentary": "解説のサンプルテキスト。",
     "analysis": "考察のサンプルテキスト。",
-    "visibility": "unlisted"
+    "visibility": "unlisted",
+    "views": 8000
   },
   {
     "id": 45,
@@ -672,7 +716,8 @@
     "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
     "commentary": "解説のサンプルテキスト。",
     "analysis": "考察のサンプルテキスト。",
-    "visibility": "unlisted"
+    "visibility": "unlisted",
+    "views": 8181
   },
   {
     "id": 46,
@@ -687,7 +732,8 @@
     "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
     "commentary": "解説のサンプルテキスト。",
     "analysis": "考察のサンプルテキスト。",
-    "visibility": "private"
+    "visibility": "private",
+    "views": 8282
   },
   {
     "id": 47,
@@ -702,7 +748,8 @@
     "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
     "commentary": "解説のサンプルテキスト。",
     "analysis": "考察のサンプルテキスト。",
-    "visibility": "private"
+    "visibility": "private",
+    "views": 8383
   },
   {
     "id": 48,
@@ -717,7 +764,8 @@
     "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
     "commentary": "解説のサンプルテキスト。",
     "analysis": "考察のサンプルテキスト。",
-    "visibility": "private"
+    "visibility": "private",
+    "views": 8484
   },
   {
     "id": 49,
@@ -732,7 +780,8 @@
     "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
     "commentary": "解説のサンプルテキスト。",
     "analysis": "考察のサンプルテキスト。",
-    "visibility": "private"
+    "visibility": "private",
+    "views": 8585
   },
   {
     "id": 50,
@@ -747,6 +796,7 @@
     "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
     "commentary": "解説のサンプルテキスト。",
     "analysis": "考察のサンプルテキスト。",
-    "visibility": "private"
+    "visibility": "private",
+    "views": 8686
   }
 ]

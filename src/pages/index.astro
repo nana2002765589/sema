@@ -1,96 +1,162 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import projects from "../assets/projects.json";
+import projectsData from "../assets/projects.json";
+import insightsData from "../assets/insights.json";
 import SubHeader from '../components/SubHeader.astro';
-const base = import.meta.env.BASE_URL;
-const allCategories = projects.flatMap(p => p.category);
-const uniqueCategories = [...new Set(allCategories)];
 
+const projects = projectsData.sort((a, b) => b.views - a.views);
+const insights = insightsData.sort((a, b) => b.views - a.views);
+
+const allProjectCategories = projects.flatMap(p => p.category);
+const uniqueProjectCategories = [...new Set(allProjectCategories)];
+
+const allInsightCategories = insights.flatMap(i => i.category);
+const uniqueInsightCategories = [...new Set(allInsightCategories)];
 ---
 
-<Layout title="SEMA - Home">
+<Layout title="SEMA - 作品">
 	<SubHeader />
 
-	<section>
-		<h2>Works</h2>
+	<div id="projects-section">
+		<section>
+			<h2>作品</h2>
 
-		<div class="filter-container" id="category-filters">
-			<strong>Category:</strong>
-			<button class="filter-btn active" data-category="All">All</button>
-			{uniqueCategories.map(category => (
-				<button class="filter-btn" data-category={category}>{category}</button>
-			))}
-		</div>
+			<div class="filter-container" id="project-category-filters">
+				<strong>Category:</strong>
+				<button class="filter-btn active" data-category="All">All</button>
+				{uniqueProjectCategories.map(category => (
+					<button class="filter-btn" data-category={category}>{category}</button>
+				))}
+			</div>
 
-		<div class="filter-container" id="visibility-filters">
-			<strong>Visibility:</strong>
-			<button class="filter-btn active" data-visibility="All">すべて</button>
-			<button class="filter-btn" data-visibility="public">公開</button>
-			<button class="filter-btn" data-visibility="unlisted">限定公開</button>
-			<button class="filter-btn" data-visibility="private">非公開</button>
-		</div>
-
-		<div class="project-list">
-			{projects.map((project) => (
-				<a href={`${base}/projects/${project.id}`} class="card-link" data-categories={project.category.join(' ')} data-visibility={project.visibility}>
-					<div class="card">
+			<div class="project-list">
+				{projects.map((project, index) => (
+					<div class="card" data-categories={project.category.join(' ')}>
+						<div class="rank-badge">No.{index + 1}</div>
 						<h3>{project.title}</h3>
 						<p>{project.synopsis}</p>
 						<div class="categories">
 							{project.category.map(cat => <span class="category">{cat}</span>)}
 						</div>
+						<div class="views">👁️ {project.views.toLocaleString()}</div>
 					</div>
-				</a>
-			))}
-		</div>
-	</section>
+				))}
+			</div>
+		</section>
+	</div>
+
+	<div id="insights-section" style="display: none;">
+		<section>
+			<h2>考察</h2>
+	
+			<div class="filter-container" id="insight-category-filters">
+				<strong>Category:</strong>
+				<button class="filter-btn active" data-category="All">All</button>
+				{uniqueInsightCategories.map(category => (
+					<button class="filter-btn" data-category={category}>{category}</button>
+				))}
+			</div>
+	
+			<div class="project-list">
+				{insights.map((insight, index) => (
+					<div class="card" data-categories={insight.category.join(' ')}>
+						<div class="rank-badge">No.{index + 1}</div>
+						<h3>{insight.title}</h3>
+						<p>{insight.content}</p>
+						<div class="categories">
+							{insight.category.map(cat => <span class="category">{cat}</span>)}
+						</div>
+						<div class="views">👁️ {insight.views.toLocaleString()}</div>
+					</div>
+				))}
+			</div>
+		</section>
+	</div>
+
 
 	<script>
-		const categoryFilters = document.querySelector('#category-filters');
-		const visibilityFilters = document.querySelector('#visibility-filters');
-		const projectLinks = document.querySelectorAll('.card-link');
+		document.addEventListener('DOMContentLoaded', () => {
+			const subHeaderTabs = document.querySelectorAll('.sub-header nav a');
+			const projectsSection = document.querySelector('#projects-section');
+			const insightsSection = document.querySelector('#insights-section');
 
-		let selectedCategory = 'All';
-		let selectedVisibility = 'All';
+			const projectCategoryFilters = document.querySelector('#project-category-filters');
+			const projectCards = document.querySelectorAll('#projects-section .card');
+			const insightCategoryFilters = document.querySelector('#insight-category-filters');
+			const insightCards = document.querySelectorAll('#insights-section .card');
 
-		function applyFilters() {
-			projectLinks.forEach(link => {
-				const cardCategories = link.dataset.categories.split(' ');
-				const cardVisibility = link.dataset.visibility;
-
-				const categoryMatch = selectedCategory === 'All' || cardCategories.includes(selectedCategory);
-				const visibilityMatch = selectedVisibility === 'All' || cardVisibility === selectedVisibility;
-
-				if (categoryMatch && visibilityMatch) {
-					link.style.display = 'flex';
-				} else {
-					link.style.display = 'none';
-				}
-			});
-		}
-
-		categoryFilters.addEventListener('click', (e) => {
-			const target = e.target;
-			if (!target.matches('.filter-btn')) return;
-
-			categoryFilters.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-			target.classList.add('active');
-			selectedCategory = target.dataset.category;
-			applyFilters();
-		});
-
-		visibilityFilters.addEventListener('click', (e) => {
-			const target = e.target;
-			if (!target.matches('.filter-btn')) return;
+			let selectedProjectCategory = 'All';
+			let selectedInsightCategory = 'All';
 			
-			visibilityFilters.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-			target.classList.add('active');
-			selectedVisibility = target.dataset.visibility;
-			applyFilters();
-		});
+			function applyFilters(cards, selectedCategory) {
+				cards.forEach(card => {
+					const cardCategories = card.dataset.categories.split(' ');
+					const categoryMatch = selectedCategory === 'All' || cardCategories.includes(selectedCategory);
 
-		// Initial filter application on page load
-		applyFilters();
+					if (categoryMatch) {
+						card.style.display = 'flex';
+					} else {
+						card.style.display = 'none';
+					}
+				});
+			}
+
+			projectCategoryFilters.addEventListener('click', (e) => {
+				const target = e.target;
+				if (!target.matches('.filter-btn')) return;
+
+				projectCategoryFilters.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+				target.classList.add('active');
+				selectedProjectCategory = target.dataset.category;
+				applyFilters(projectCards, selectedProjectCategory);
+			});
+
+			insightCategoryFilters.addEventListener('click', (e) => {
+				const target = e.target;
+				if (!target.matches('.filter-btn')) return;
+
+				insightCategoryFilters.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+				target.classList.add('active');
+				selectedInsightCategory = target.dataset.category;
+				applyFilters(insightCards, selectedInsightCategory);
+			});
+
+
+			// Tab switching logic
+			subHeaderTabs.forEach(tab => {
+				tab.addEventListener('click', (e) => {
+					// e.preventDefaultするとページ遷移をブロックしてしまうのでコメントアウト
+					// e.preventDefault();
+					const tabName = tab.getAttribute('data-tab');
+
+					subHeaderTabs.forEach(t => t.classList.remove('active'));
+					tab.classList.add('active');
+
+					if (tabName === 'projects') {
+						projectsSection.style.display = 'block';
+						insightsSection.style.display = 'none';
+					} else if (tabName === 'insights') {
+						projectsSection.style.display = 'none';
+						insightsSection.style.display = 'block';
+					}
+				});
+			});
+
+			// Initial setup
+			applyFilters(projectCards, selectedProjectCategory);
+			applyFilters(insightCards, selectedInsightCategory);
+
+			// Activate the correct tab based on the URL or default to projects
+			// const currentPath = window.location.pathname;
+			// const insightsTab = document.querySelector('a[data-tab="insights"]');
+			// const projectsTab = document.querySelector('a[data-tab="projects"]');
+
+			// if (currentPath.includes('/insights')) {
+			// 	if(insightsTab) insightsTab.click();
+			// } else {
+			// 	if(projectsTab) projectsTab.click();
+			// }
+		});
 	</script>
 </Layout>
 
@@ -123,23 +189,19 @@ const uniqueCategories = [...new Set(allCategories)];
 		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 		gap: 1rem;
 	}
-	.card-link {
-		text-decoration: none;
-		color: inherit;
-		display: flex; /* Make the link a flex container */
-	}
 	.card {
 		border: 1px solid #ddd;
 		border-radius: 8px;
 		padding: 1rem;
 		box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 		transition: box-shadow 0.2s, transform 0.2s;
-		display: flex; /* Make the card a flex container */
-		flex-direction: column; /* Arrange content vertically */
-		width: 100%; /* Ensure card fills the link */
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		position: relative;
 	}
 	.card p {
-		flex-grow: 1; /* Allow the paragraph to grow */
+		flex-grow: 1;
 	}
 	.card:hover {
 		box-shadow: 0 4px 8px rgba(0,0,0,0.15);
@@ -147,6 +209,7 @@ const uniqueCategories = [...new Set(allCategories)];
 	}
 	.card h3 {
 		margin-top: 0;
+		padding-top: 1.5rem; /* space for the rank badge */
 	}
 	.categories {
 		margin-top: 1rem;
@@ -158,6 +221,24 @@ const uniqueCategories = [...new Set(allCategories)];
 		border-radius: 15px;
 		font-size: 0.8rem;
 		margin-right: 0.5rem;
+	}
+	.rank-badge {
+		position: absolute;
+		top: -10px;
+		left: -10px;
+		background-color: #ff4757;
+		color: white;
+		padding: 0.5em 0.8em;
+		border-radius: 20px;
+		font-size: 0.9rem;
+		font-weight: bold;
+		box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+	}
+	.views {
+		margin-top: 1rem;
+		font-size: 0.9rem;
+		color: #555;
+		text-align: right;
 	}
 </style>
 
