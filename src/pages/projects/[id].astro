@@ -3,9 +3,9 @@ import Layout from '../../layouts/Layout.astro';
 import projects from '../../assets/projects.json';
 
 export function getStaticPaths() {
-    return projects.map((project, index) => {
+    return projects.map((project) => {
         return {
-            params: { id: String(index) },
+            params: { id: String(project.id) },
             props: { project }
         };
     });

@@ -1,0 +1,58 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="検索">
+  <main>
+    <div class="search-form">
+      <input type="search" placeholder="キーワードで検索" />
+      <button>
+        <img src="/sema/icons/search.svg" alt="検索" />
+      </button>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  main {
+    padding: 1rem;
+  }
+  .search-form {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 600px;
+    margin: 2rem auto;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+
+  input[type="search"] {
+    flex-grow: 1;
+    border: none;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    outline: none;
+  }
+
+  input[type="search"]::-webkit-search-cancel-button {
+    display: none;
+  }
+
+  button {
+    background: none;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  button img {
+    width: 20px;
+    height: 20px;
+  }
+</style>
