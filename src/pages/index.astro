@@ -4,6 +4,7 @@ import projectsData from "../assets/projects.json";
 import insightsData from "../assets/insights.json";
 import SubHeader from '../components/SubHeader.astro';
 
+const base = import.meta.env.BASE_URL;
 const projects = projectsData.sort((a, b) => b.views - a.views);
 const insights = insightsData.sort((a, b) => b.views - a.views);
 
@@ -18,7 +19,7 @@ const uniqueInsightCategories = [...new Set(allInsightCategories)];
 	<SubHeader />
 
 	<div class="search-container">
-		<input type="search" id="search-box" placeholder="Search projects and insights...">
+		<input type="search" id="search-box" placeholder="作品や考察を検索...">
 	</div>
 
 	<div id="projects-section">
@@ -26,8 +27,8 @@ const uniqueInsightCategories = [...new Set(allInsightCategories)];
 			<h2>作品</h2>
 
 			<div class="filter-container" id="project-category-filters">
-				<strong>Category:</strong>
-				<button class="filter-btn active" data-category="All">All</button>
+				<strong>カテゴリー:</strong>
+				<button class="filter-btn active" data-category="All">すべて</button>
 				{uniqueProjectCategories.map(category => (
 					<button class="filter-btn" data-category={category}>{category}</button>
 				))}
@@ -35,14 +36,19 @@ const uniqueInsightCategories = [...new Set(allInsightCategories)];
 
 			<div class="project-list">
 				{projects.map((project, index) => (
-					<div class="card" data-categories={project.category.join(' ')}>
-						<div class="rank-badge">No.{index + 1}</div>
-						<h3>{project.title}</h3>
-						<p>{project.synopsis}</p>
-						<div class="categories">
-							{project.category.map(cat => <span class="category">{cat}</span>)}
-						</div>
-						<div class="views">👁️ {project.views.toLocaleString()}</div>
+					<div class="card" data-categories={project.category.join(' ')} data-id={project.id}>
+						<a href={`${base}/projects/${project.id}`} class="card-link">
+							<div class="rank-badge">No.{index + 1}</div>
+							<h3>{project.title}</h3>
+							<p>{project.synopsis}</p>
+							<div class="categories">
+								{project.category.map(cat => <span class="category">{cat}</span>)}
+							</div>
+							<div class="views">👁️ {project.views.toLocaleString()}</div>
+						</a>
+						<button class="bookmark-btn" aria-label="ブックマークに追加">
+							<img src={`${base}/icons/bookmark.svg`} alt="ブックマーク" />
+						</button>
 					</div>
 				))}
 			</div>
@@ -54,8 +60,8 @@ const uniqueInsightCategories = [...new Set(allInsightCategories)];
 			<h2>考察</h2>
 	
 			<div class="filter-container" id="insight-category-filters">
-				<strong>Category:</strong>
-				<button class="filter-btn active" data-category="All">All</button>
+				<strong>カテゴリー:</strong>
+				<button class="filter-btn active" data-category="All">すべて</button>
 				{uniqueInsightCategories.map(category => (
 					<button class="filter-btn" data-category={category}>{category}</button>
 				))}
@@ -63,14 +69,19 @@ const uniqueInsightCategories = [...new Set(allInsightCategories)];
 	
 			<div class="project-list">
 				{insights.map((insight, index) => (
-					<div class="card" data-categories={insight.category.join(' ')}>
-						<div class="rank-badge">No.{index + 1}</div>
-						<h3>{insight.title}</h3>
-						<p>{insight.content}</p>
-						<div class="categories">
-							{insight.category.map(cat => <span class="category">{cat}</span>)}
-						</div>
-						<div class="views">👁️ {insight.views.toLocaleString()}</div>
+					<div class="card" data-categories={insight.category.join(' ')} data-id={insight.id}>
+						<a href={`${base}/insights`} class="card-link">
+							<div class="rank-badge">No.{index + 1}</div>
+							<h3>{insight.title}</h3>
+							<p>{insight.content}</p>
+							<div class="categories">
+								{insight.category.map(cat => <span class="category">{cat}</span>)}
+							</div>
+							<div class="views">👁️ {insight.views.toLocaleString()}</div>
+						</a>
+						<button class="bookmark-btn-insights" aria-label="ブックマークに追加">
+							<img src={`${base}/icons/bookmark.svg`} alt="ブックマーク" />
+						</button>
 					</div>
 				))}
 			</div>
@@ -80,6 +91,7 @@ const uniqueInsightCategories = [...new Set(allInsightCategories)];
 
 	<script>
 		document.addEventListener('DOMContentLoaded', () => {
+			// Tab and filter logic from before...
 			const subHeaderTabs = document.querySelectorAll('.sub-header nav a');
 			const projectsSection = document.querySelector('#projects-section');
 			const insightsSection = document.querySelector('#insights-section');
@@ -125,17 +137,9 @@ const uniqueInsightCategories = [...new Set(allInsightCategories)];
 				applyFilters(insightCards, selectedInsightCategory);
 			});
 
-
-			// Tab switching logic
 			subHeaderTabs.forEach(tab => {
 				tab.addEventListener('click', (e) => {
-					// e.preventDefaultするとページ遷移をブロックしてしまうのでコメントアウト
-					// e.preventDefault();
 					const tabName = tab.getAttribute('data-tab');
-
-					subHeaderTabs.forEach(t => t.classList.remove('active'));
-					tab.classList.add('active');
-
 					if (tabName === 'projects') {
 						projectsSection.style.display = 'block';
 						insightsSection.style.display = 'none';
@@ -146,20 +150,83 @@ const uniqueInsightCategories = [...new Set(allInsightCategories)];
 				});
 			});
 
-			// Initial setup
 			applyFilters(projectCards, selectedProjectCategory);
 			applyFilters(insightCards, selectedInsightCategory);
 
-			// Activate the correct tab based on the URL or default to projects
-			// const currentPath = window.location.pathname;
-			// const insightsTab = document.querySelector('a[data-tab="insights"]');
-			// const projectsTab = document.querySelector('a[data-tab="projects"]');
+			// Project bookmark logic
+			const bookmarkButtonsProjects = document.querySelectorAll('#projects-section .bookmark-btn');
+			let bookmarkedProjects = JSON.parse(localStorage.getItem('bookmarkedProjects')) || [];
 
-			// if (currentPath.includes('/insights')) {
-			// 	if(insightsTab) insightsTab.click();
-			// } else {
-			// 	if(projectsTab) projectsTab.click();
-			// }
+			function toggleBookmarkProject(id) {
+				const projectId = parseInt(id, 10);
+				const index = bookmarkedProjects.indexOf(projectId);
+				if (index > -1) {
+					bookmarkedProjects.splice(index, 1);
+				} else {
+					bookmarkedProjects.push(projectId);
+				}
+				localStorage.setItem('bookmarkedProjects', JSON.stringify(bookmarkedProjects));
+				updateBookmarkButtonsProjects();
+			}
+
+			function updateBookmarkButtonsProjects() {
+				projectCards.forEach(card => {
+					const id = parseInt(card.dataset.id, 10);
+					const button = card.querySelector('.bookmark-btn');
+					if (bookmarkedProjects.includes(id)) {
+						button.classList.add('active');
+					} else {
+						button.classList.remove('active');
+					}
+				});
+			}
+
+			bookmarkButtonsProjects.forEach(button => {
+				button.addEventListener('click', (e) => {
+					e.stopPropagation();
+					const card = button.closest('.card');
+					toggleBookmarkProject(card.dataset.id);
+				});
+			});
+			
+			// Insight bookmark logic
+			const bookmarkButtonsInsights = document.querySelectorAll('#insights-section .bookmark-btn-insights');
+			let bookmarkedInsights = JSON.parse(localStorage.getItem('bookmarkedInsights')) || [];
+
+			function toggleBookmarkInsight(id) {
+				const insightId = parseInt(id, 10);
+				const index = bookmarkedInsights.indexOf(insightId);
+				if (index > -1) {
+					bookmarkedInsights.splice(index, 1);
+				} else {
+					bookmarkedInsights.push(insightId);
+				}
+				localStorage.setItem('bookmarkedInsights', JSON.stringify(bookmarkedInsights));
+				updateBookmarkButtonsInsights();
+			}
+
+			function updateBookmarkButtonsInsights() {
+				insightCards.forEach(card => {
+					const id = parseInt(card.dataset.id, 10);
+					const button = card.querySelector('.bookmark-btn-insights');
+					if (bookmarkedInsights.includes(id)) {
+						button.classList.add('active');
+					} else {
+						button.classList.remove('active');
+					}
+				});
+			}
+
+			bookmarkButtonsInsights.forEach(button => {
+				button.addEventListener('click', (e) => {
+					e.stopPropagation();
+					const card = button.closest('.card');
+					toggleBookmarkInsight(card.dataset.id);
+				});
+			});
+
+			updateBookmarkButtonsProjects();
+			updateBookmarkButtonsInsights();
 		});
 	</script>
 </Layout>
@@ -204,6 +271,13 @@ const uniqueInsightCategories = [...new Set(allInsightCategories)];
 		width: 100%;
 		position: relative;
 	}
+	.card-link {
+		text-decoration: none;
+		color: inherit;
+		display: flex;
+		flex-direction: column;
+		flex-grow: 1;
+	}
 	.card p {
 		flex-grow: 1;
 	}
@@ -237,6 +311,7 @@ const uniqueInsightCategories = [...new Set(allInsightCategories)];
 		font-size: 0.9rem;
 		font-weight: bold;
 		box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+		z-index: 1;
 	}
 	.views {
 		margin-top: 1rem;
@@ -244,5 +319,29 @@ const uniqueInsightCategories = [...new Set(allInsightCategories)];
 		color: #555;
 		text-align: right;
 	}
+	.bookmark-btn, .bookmark-btn-insights {
+		position: absolute;
+		top: 1rem;
+		right: 1rem;
+		background: none;
+		border: none;
+		cursor: pointer;
+		padding: 0;
+		width: 24px;
+		height: 24px;
+		z-index: 2;
+	}
+	.bookmark-btn img, .bookmark-btn-insights img {
+		width: 100%;
+		height: 100%;
+		opacity: 0.5;
+		transition: opacity 0.2s;
+	}
+	.bookmark-btn:hover img, .bookmark-btn-insights:hover img {
+		opacity: 1;
+	}
+	.bookmark-btn.active img, .bookmark-btn-insights.active img {
+		opacity: 1;
+		filter: grayscale(0%) opacity(1);
+	}
 </style>
-

@@ -1,29 +1,32 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import projects from '../assets/projects.json';
+import insights from '../assets/insights.json';
+
+const base = import.meta.env.BASE_URL;
 ---
 
-<Layout title="My Page">
+<Layout title="マイページ">
   <main class="bg-gray-50 min-h-screen">
     <div class="container mx-auto p-4 max-w-4xl">
       <!-- Profile Header -->
       <header class="flex items-center p-4">
         <div class="w-20 h-20 md:w-32 md:h-32">
-          <img src="./icons/user.svg" alt="User Profile" class="rounded-full border p-1">
+          <img src={`${base}/icons/user.svg`} alt="ユーザープロフィール" class="rounded-full border p-1">
         </div>
         <div class="ml-6 flex-grow">
           <div class="flex items-center">
             <h1 class="text-2xl font-light">my_username</h1>
-            <button class="ml-4 px-4 py-1 text-sm font-semibold border rounded">Edit Profile</button>
+            <button class="ml-4 px-4 py-1 text-sm font-semibold border rounded">プロフィールを編集</button>
           </div>
           <div class="flex mt-4 space-x-8">
-            <div><span class="font-semibold">0</span> posts</div>
-            <div><span class="font-semibold">123</span> followers</div>
-            <div><span class="font-semibold">456</span> following</div>
+            <div><span class="font-semibold">0</span> 投稿</div>
+            <div><span class="font-semibold">123</span> フォロワー</div>
+            <div><span class="font-semibold">456</span> フォロー中</div>
           </div>
           <div class="mt-4">
             <p class="font-semibold">My Name</p>
-            <p class="text-gray-600">This is my bio. I love watching anime and recording my thoughts!</p>
+            <p class="text-gray-600">これは自己紹介です。アニメを見たり、考えを記録するのが大好きです！</p>
           </div>
         </div>
       </header>
@@ -31,72 +34,70 @@ import projects from '../assets/projects.json';
       <!-- Tabs -->
       <div class="border-t mt-4">
         <div class="flex justify-center -mb-px">
-          <a href="#" class="text-sm font-semibold text-gray-800 border-t-2 border-black py-3 px-4">POSTS</a>
-          <a href="#" class="text-sm font-semibold text-gray-500 py-3 px-4">SAVED</a>
-          <a href="#" class="text-sm font-semibold text-gray-500 py-3 px-4">TAGGED</a>
+          <a href="#" id="posts-tab" class="tab-btn text-sm font-semibold text-gray-800 border-t-2 border-black py-3 px-4 active">投稿</a>
+          <a href="#" id="saved-tab" class="tab-btn text-sm font-semibold text-gray-500 py-3 px-4">ブックマーク</a>
+          <a href="#" id="tagged-tab" class="tab-btn text-sm font-semibold text-gray-500 py-3 px-4">タグ付けされた投稿</a>
         </div>
       </div>
       
       <!-- Impression Form -->
       <section id="impression-form" class="my-8 p-4 bg-white border rounded-lg">
-        <h2 class="text-lg font-semibold mb-4">Record New Impression</h2>
+        <h2 class="text-lg font-semibold mb-4">新しい感想を記録する</h2>
         <form>
           <div class="mb-4">
-            <label for="project-select" class="block text-gray-700 text-sm font-bold mb-2">Project:</label>
+            <label for="project-select" class="block text-gray-700 text-sm font-bold mb-2">作品:</label>
             <select id="project-select" class="shadow-sm border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-              <option value="">--Choose a project--</option>
+              <option value="">-- 作品を選択してください --</option>
               {projects.map(project => (
                 <option value={project.id}>{project.title}</option>
               ))}
             </select>
           </div>
           <div class="mb-4">
-            <label for="impression-text" class="block text-gray-700 text-sm font-bold mb-2">Thoughts:</label>
-            <textarea id="impression-text" rows="4" class="shadow-sm appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Your impressions..."></textarea>
+            <label for="impression-text" class="block text-gray-700 text-sm font-bold mb-2">感想:</label>
+            <textarea id="impression-text" rows="4" class="shadow-sm appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="ここに感想を記入..."></textarea>
           </div>
           <div class="flex justify-end gap-2">
             <button data-visibility="public" type="button" class="save-impression-btn bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-              Public
+              公開
             </button>
             <button data-visibility="unlisted" type="button" class="save-impression-btn bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-              Unlisted
+              限定公開
             </button>
             <button data-visibility="private" type="button" class="save-impression-btn bg-black hover:bg-gray-800 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-              Private
+              非公開
             </button>
           </div>
         </form>
       </section>
 
-      <!-- Posts Grid -->
-      <div id="saved-impressions-container" class="grid grid-cols-3 gap-1 md:gap-4">
-        <!-- Saved impressions will be loaded here as image posts -->
+      <!-- Content Grid -->
+      <div id="content-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+        <!-- Content will be loaded here -->
       </div>
     </div>
   </main>
 
-  <script define:vars={{ projects }}>
+  <script define:vars={{ projects, insights }}>
     document.addEventListener('DOMContentLoaded', () => {
-      const projectSelect = document.getElementById('project-select') as HTMLSelectElement;
-      const impressionText = document.getElementById('impression-text') as HTMLTextAreaElement;
-      const impressionsContainer = document.getElementById('saved-impressions-container');
+      const base = import.meta.env.BASE_URL;
+      const projectSelect = document.getElementById('project-select');
+      const impressionText = document.getElementById('impression-text');
+      const contentGrid = document.getElementById('content-grid');
+      const postsTab = document.getElementById('posts-tab');
+      const savedTab = document.getElementById('saved-tab');
+      const taggedTab = document.getElementById('tagged-tab');
+      const tabs = [postsTab, savedTab, taggedTab];
 
-      const getImpressions = () => {
-        const impressionsJSON = localStorage.getItem('impressions');
-        return impressionsJSON ? JSON.parse(impressionsJSON) : [];
-      };
+      let activeTab = 'posts';
 
-      const saveImpressions = (impressions) => {
-        localStorage.setItem('impressions', JSON.stringify(impressions));
-      };
+      const getImpressions = () => JSON.parse(localStorage.getItem('impressions')) || [];
+      const saveImpressions = (impressions) => localStorage.setItem('impressions', JSON.stringify(impressions));
 
       const renderImpressions = () => {
+        contentGrid.innerHTML = '';
         const impressions = getImpressions();
-        if (impressionsContainer) {
-            impressionsContainer.innerHTML = '';
-        }
         
-        // Update post count
         const postCountEl = document.querySelector('.flex.mt-4.space-x-8 div:first-child span');
         if (postCountEl) {
             postCountEl.textContent = impressions.length;
@@ -107,19 +108,100 @@ import projects from '../assets/projects.json';
           if (!project) return;
           
           const postElement = document.createElement('div');
-          postElement.className = 'relative aspect-square bg-gray-200';
+          postElement.className = 'relative aspect-square bg-gray-200 rounded-lg overflow-hidden';
           
           postElement.innerHTML = `
-            <img src="${project.image || 'https://via.placeholder.com/500'}" alt="${project.title}" class="w-full h-full object-cover">
-            <div class="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-40 transition-all duration-300 flex items-center justify-center opacity-0 hover:opacity-100">
-                <p class="text-white text-center p-4">${impression.text}</p>
-            </div>
+            <a href={`${base}/projects/${project.id}`">
+              <img src="${project.map_url || 'https://via.placeholder.com/500'}" alt="${project.title}" class="w-full h-full object-cover">
+              <div class="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-40 transition-all duration-300 flex items-center justify-center opacity-0 hover:opacity-100">
+                  <p class="text-white text-center p-4">${impression.text}</p>
+              </div>
+            </a>
           `;
-          if (impressionsContainer) {
-            impressionsContainer.appendChild(postElement);
-          }
+          contentGrid.appendChild(postElement);
         });
       };
+      
+      const renderSavedItems = () => {
+        contentGrid.innerHTML = '';
+        const bookmarkedProjects = JSON.parse(localStorage.getItem('bookmarkedProjects')) || [];
+        const bookmarkedInsights = JSON.parse(localStorage.getItem('bookmarkedInsights')) || [];
+
+        const savedProjects = projects.filter(p => bookmarkedProjects.includes(p.id));
+        const savedInsights = insights.filter(i => bookmarkedInsights.includes(i.id));
+
+        savedProjects.forEach(project => {
+            const itemElement = document.createElement('div');
+            itemElement.className = 'border rounded-lg overflow-hidden shadow-lg';
+            itemElement.innerHTML = `
+              <a href={`${base}/projects/${project.id}`">
+                <img src="${project.map_url || 'https://via.placeholder.com/500'}" alt="${project.title}" class="w-full h-48 object-cover">
+                <div class="p-4">
+                  <h3 class="font-bold text-lg mb-2">${project.title}</h3>
+                  <p class="text-gray-700 text-base">${project.synopsis.substring(0, 100)}...</p>
+                </div>
+              </a>
+            `;
+            contentGrid.appendChild(itemElement);
+        });
+
+        savedInsights.forEach(insight => {
+            const itemElement = document.createElement('div');
+            itemElement.className = 'border rounded-lg overflow-hidden shadow-lg';
+            itemElement.innerHTML = `
+              <a href={`${base}/insights`">
+                <div class="p-4">
+                  <h3 class="font-bold text-lg mb-2">${insight.title}</h3>
+                  <p class="text-gray-700 text-base">${insight.content.substring(0, 150)}...</p>
+                </div>
+              </a>
+            `;
+            contentGrid.appendChild(itemElement);
+        });
+
+        if (contentGrid.innerHTML === '') {
+          contentGrid.innerHTML = '<p class="text-center text-gray-500 col-span-full">保存済みのアイテムはありません。</p>';
+        }
+      }
+
+      const updateTabs = () => {
+        tabs.forEach(tab => {
+          tab.classList.remove('active', 'text-gray-800', 'border-black');
+          tab.classList.add('text-gray-500');
+        });
+        const activeTabEl = document.getElementById(`${activeTab}-tab`);
+        activeTabEl.classList.add('active', 'text-gray-800', 'border-black');
+        activeTabEl.classList.remove('text-gray-500');
+        
+        if (activeTab === 'posts') {
+          renderImpressions();
+          document.getElementById('impression-form').style.display = 'block';
+        } else if (activeTab === 'saved') {
+          renderSavedItems();
+          document.getElementById('impression-form').style.display = 'none';
+        } else {
+          contentGrid.innerHTML = `<p class="text-center text-gray-500 col-span-full">ここにタグ付けされた投稿が表示されます。</p>`;
+          document.getElementById('impression-form').style.display = 'none';
+        }
+      }
+
+      postsTab.addEventListener('click', (e) => {
+        e.preventDefault();
+        activeTab = 'posts';
+        updateTabs();
+      });
+
+      savedTab.addEventListener('click', (e) => {
+        e.preventDefault();
+        activeTab = 'saved';
+        updateTabs();
+      });
+      
+      taggedTab.addEventListener('click', (e) => {
+        e.preventDefault();
+        activeTab = 'tagged';
+        updateTabs();
+      });
 
       const saveButtons = document.querySelectorAll('.save-impression-btn');
       if (saveButtons.length > 0 && projectSelect && impressionText) {
@@ -130,23 +212,17 @@ import projects from '../assets/projects.json';
             const visibility = button.getAttribute('data-visibility');
 
             if (!projectId || !text) {
-              alert('Please select a project and write your thoughts.');
+              alert('作品を選択し、感想を記入してください。');
               return;
             }
 
             const impressions = getImpressions();
-            const newImpression = {
-              id: Date.now(),
-              projectId,
-              text,
-              visibility,
-            };
-            impressions.unshift(newImpression); // Add to the beginning for chronological order
+            impressions.unshift({ id: Date.now(), projectId, text, visibility });
             saveImpressions(impressions);
 
-            renderImpressions();
+            activeTab = 'posts';
+            updateTabs();
 
-            // Reset form
             projectSelect.value = '';
             impressionText.value = '';
           });
@@ -154,7 +230,17 @@ import projects from '../assets/projects.json';
       }
 
       // Initial render
-      renderImpressions();
+      updateTabs();
     });
   </script>
+  <style>
+    .tab-btn.active {
+      border-color: black;
+      color: #1a202c; /* text-gray-900 */
+    }
+    #content-grid a {
+      text-decoration: none;
+      color: inherit;
+    }
+  </style>
 </Layout>
