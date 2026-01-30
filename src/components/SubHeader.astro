@@ -1,6 +1,7 @@
 ---
 const { pathname } = Astro.url;
 const base = import.meta.env.BASE_URL;
+const { showTabs = true } = Astro.props;
 
 // Normalize pathname to remove trailing slash if it's not the root
 const normalizedPathname = pathname.length > 1 && pathname.endsWith('/') ? pathname.slice(0, -1) : pathname;
@@ -10,25 +11,31 @@ const tabs = [
     { name: '考察', href: `${base}/insights` }
 ]
 ---
-<div class="sub-header">
-    <nav>
-        {tabs.map(tab => {
-            let isActive = false;
-            if (tab.name === '作品') {
-                const projectsRoot = base === '/' ? '/' : base;
-                // Active if it's the root or a projects page
-                isActive = normalizedPathname === projectsRoot || normalizedPathname.startsWith(`${projectsRoot}/projects`);
-            } else {
-                isActive = normalizedPathname === tab.href;
-            }
-            return (
-                <a href={tab.href} class:list={{ active: isActive }}>
-                    {tab.name}
-                </a>
-            );
-        })}
-    </nav>
-</div>
+{showTabs && (
+    <div class="sub-header">
+        <nav>
+            {tabs.map(tab => {
+                let isActive = false;
+                const tabPath = tab.href;
+
+                if (tab.name === '作品') {
+                    const projectsRoot = base === '/' ? '/' : base;
+                    // Active if it's the root page or a projects page, but not insights
+                    isActive = (normalizedPathname === projectsRoot || normalizedPathname.startsWith(`${projectsRoot}/projects`)) && !normalizedPathname.startsWith(`${base}/insights`);
+                } else {
+                    // Active if the path starts with the tab's href
+                    isActive = normalizedPathname.startsWith(tabPath);
+                }
+
+                return (
+                    <a href={tab.href} class:list={{ active: isActive }}>
+                        {tab.name}
+                    </a>
+                );
+            })}
+        </nav>
+    </div>
+)}
 
 <style>
     .sub-header {

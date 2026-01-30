@@ -1,0 +1,110 @@
+---
+import Layout from '../layouts/Layout.astro';
+import projects from '../assets/projects.json';
+import insights from '../assets/insights.json';
+
+const base = import.meta.env.BASE_URL;
+---
+
+<Layout title="ブックマーク - マイページ">
+  <main class="bg-gray-50 min-h-screen">
+    <div class="container mx-auto p-4 max-w-4xl">
+      <!-- Profile Header -->
+      <header class="flex items-center p-4">
+        <div class="w-20 h-20 md:w-32 md:h-32">
+          <img src={`${base}/icons/user.svg`} alt="ユーザープロフィール" class="rounded-full border p-1">
+        </div>
+        <div class="ml-6 flex-grow">
+          <div class="flex items-center">
+            <h1 class="text-2xl font-light">my_username</h1>
+            <button class="ml-4 px-4 py-1 text-sm font-semibold border rounded">プロフィールを編集</button>
+          </div>
+          <div class="flex mt-4 space-x-8">
+            <div><span class="font-semibold">0</span> 投稿</div>
+            <div><span class="font-semibold">123</span> フォロワー</div>
+            <div><span class="font-semibold">456</span> フォロー中</div>
+          </div>
+          <div class="mt-4">
+            <p class="font-semibold">My Name</p>
+            <p class="text-gray-600">これは自己紹介です。アニメを見たり、考えを記録するのが大好きです！</p>
+          </div>
+        </div>
+      </header>
+      
+      <!-- Tabs -->
+      <div class="border-t mt-4">
+        <div class="flex justify-center -mb-px">
+          <a href={`${base}/mypage`} id="posts-tab" class="tab-btn text-sm font-semibold text-gray-500 py-3 px-4">投稿</a>
+          <a href={`${base}/bookmarks`} id="saved-tab" class="tab-btn text-sm font-semibold text-gray-800 border-t-2 border-black py-3 px-4 active">ブックマーク</a>
+          <a href="#" id="tagged-tab" class="tab-btn text-sm font-semibold text-gray-500 py-3 px-4">タグ付けされた投稿</a>
+        </div>
+      </div>
+      
+      <!-- Content Grid -->
+      <div id="content-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-8">
+        <!-- Content will be loaded here -->
+      </div>
+    </div>
+  </main>
+
+  <script define:vars={{ projects, insights }}>
+    document.addEventListener('DOMContentLoaded', () => {
+      const base = import.meta.env.BASE_URL;
+      const contentGrid = document.getElementById('content-grid');
+      
+      const renderSavedItems = () => {
+        contentGrid.innerHTML = '';
+        const bookmarkedProjects = JSON.parse(localStorage.getItem('bookmarkedProjects')) || [];
+        const bookmarkedInsights = JSON.parse(localStorage.getItem('bookmarkedInsights')) || [];
+
+        const savedProjects = projects.filter(p => bookmarkedProjects.includes(p.id));
+        const savedInsights = insights.filter(i => bookmarkedInsights.includes(i.id));
+
+        savedProjects.forEach(project => {
+            const itemElement = document.createElement('div');
+            itemElement.className = 'border rounded-lg overflow-hidden shadow-lg';
+            itemElement.innerHTML = `
+              <a href={`${base}/projects/${project.id}`">
+                <img src="${project.map_url || 'https://via.placeholder.com/500'}" alt="${project.title}" class="w-full h-48 object-cover">
+                <div class="p-4">
+                  <h3 class="font-bold text-lg mb-2">${project.title}</h3>
+                  <p class="text-gray-700 text-base">${project.synopsis.substring(0, 100)}...</p>
+                </div>
+              </a>
+            `;
+            contentGrid.appendChild(itemElement);
+        });
+
+        savedInsights.forEach(insight => {
+            const itemElement = document.createElement('div');
+            itemElement.className = 'border rounded-lg overflow-hidden shadow-lg';
+            itemElement.innerHTML = `
+              <a href={`${base}/insights`">
+                <div class="p-4">
+                  <h3 class="font-bold text-lg mb-2">${insight.title}</h3>
+                  <p class="text-gray-700 text-base">${insight.content.substring(0, 150)}...</p>
+                </div>
+              </a>
+            `;
+            contentGrid.appendChild(itemElement);
+        });
+
+        if (contentGrid.innerHTML === '') {
+          contentGrid.innerHTML = '<p class="text-center text-gray-500 col-span-full">ブックマーク済みのアイテムはありません。</p>';
+        }
+      }
+
+      renderSavedItems();
+    });
+  </script>
+  <style>
+    .tab-btn.active {
+      border-color: black;
+      color: #1a202c; /* text-gray-900 */
+    }
+    #content-grid a {
+      text-decoration: none;
+      color: inherit;
+    }
+  </style>
+</Layout>
