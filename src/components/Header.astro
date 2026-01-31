@@ -7,11 +7,40 @@ const base = import.meta.env.BASE_URL;
     <a href={base} class="logo">
       <img src={`${base}/logo.svg`} alt="Logo" />
     </a>
-    <a href={`${base}/mypage`} class="mypage">
-      <img src={`${base}/icons/user.svg`} alt="My Page" />
-    </a>
+    <div id="user-navigation" class="user-navigation">
+      <a href={`${base}/mypage`} class="mypage">
+        <img src={`${base}/icons/user.svg`} alt="My Page" />
+      </a>
+      <button id="logout-button">ログアウト</button>
+    </div>
   </nav>
 </header>
+
+<script>
+  function setupHeader() {
+    const userNavigation = document.getElementById('user-navigation');
+    const logoutButton = document.getElementById('logout-button');
+    const isLoggedIn = localStorage.getItem('isLoggedIn');
+
+    if (userNavigation) {
+      if (isLoggedIn) {
+        userNavigation.style.display = 'flex';
+      } else {
+        userNavigation.style.display = 'none';
+      }
+    }
+
+    if (logoutButton) {
+      logoutButton.addEventListener('click', () => {
+        localStorage.removeItem('isLoggedIn');
+        window.location.href = `${import.meta.env.BASE_URL}/login`;
+      });
+    }
+  }
+
+  document.addEventListener('astro:page-load', setupHeader);
+  setupHeader(); // Also run on initial load
+</script>
 
 <style>
   header {
@@ -27,7 +56,26 @@ const base = import.meta.env.BASE_URL;
   .logo img {
     height: 40px;
   }
+  .user-navigation {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
   .mypage img {
     height: 30px;
+    display: block;
+  }
+  #logout-button {
+    padding: 0.5rem 1rem;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.2s;
+  }
+  #logout-button:hover {
+    background-color: #555;
   }
 </style>

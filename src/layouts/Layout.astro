@@ -17,6 +17,16 @@ const { title = "Sema" } = Astro.props;
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
+		<script>
+			const isLoggedIn = localStorage.getItem('isLoggedIn');
+			// NOTE: This is a simplified check. In a real app, you'd want to
+			// also validate the token on the server.
+			if (Astro.url.pathname !== '/login/' && Astro.url.pathname !== '/login') {
+				if (!isLoggedIn) {
+					window.location.href = '/login';
+				}
+			}
+		</script>
 	</head>
 	<body>
 		<Header />
