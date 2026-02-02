@@ -62,8 +62,84 @@ const base = import.meta.env.BASE_URL;
                 </div>
             </section>
         )}
+
+        <section class="comment-section">
+          <h2>コメント</h2>
+          <div id="comment-list" class="comment-list">
+            <!-- Comments will be loaded here -->
+          </div>
+          <form id="comment-form" class="comment-form">
+            <h3>コメントを投稿する</h3>
+            <div class="form-group">
+              <label for="comment-name">名前</label>
+              <input type="text" id="comment-name" name="name" required>
+            </div>
+            <div class="form-group">
+              <label for="comment-text">コメント</label>
+              <textarea id="comment-text" name="comment" rows="4" required></textarea>
+            </div>
+            <button type="submit">投稿する</button>
+          </form>
+        </section>
     </main>
 </Layout>
+
+<script define:vars={{ insightId: insight.id }}>
+  document.addEventListener('DOMContentLoaded', () => {
+    const commentList = document.getElementById('comment-list');
+    const commentForm = document.getElementById('comment-form');
+    const commentNameInput = document.getElementById('comment-name');
+    const commentTextInput = document.getElementById('comment-text');
+
+    const storageKey = `comments-insight-${insightId}`;
+
+    // Load and render comments
+    const loadComments = () => {
+      const comments = JSON.parse(localStorage.getItem(storageKey)) || [];
+      commentList.innerHTML = '';
+      if (comments.length === 0) {
+        commentList.innerHTML = '<p>まだコメントはありません。</p>';
+      } else {
+        comments.forEach(comment => {
+          const commentElement = document.createElement('div');
+          commentElement.className = 'comment';
+          commentElement.innerHTML = `
+            <p class="comment-meta"><strong>${comment.name}</strong> - ${new Date(comment.date).toLocaleString('ja-JP')}</p>
+            <p class="comment-body">${comment.text}</p>
+          `;
+          commentList.appendChild(commentElement);
+        });
+      }
+    };
+
+    // Handle form submission
+    commentForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const newComment = {
+        name: commentNameInput.value.trim(),
+        text: commentTextInput.value.trim(),
+        date: new Date().toISOString(),
+      };
+
+      if (!newComment.name || !newComment.text) {
+        return;
+      }
+
+      const comments = JSON.parse(localStorage.getItem(storageKey)) || [];
+      comments.push(newComment);
+      localStorage.setItem(storageKey, JSON.stringify(comments));
+
+      // Clear form and reload comments
+      commentNameInput.value = '';
+      commentTextInput.value = '';
+      loadComments();
+    });
+
+    // Initial load
+    loadComments();
+  });
+</script>
 
 <style>
     .insight-detail-page {
@@ -167,5 +243,86 @@ const base = import.meta.env.BASE_URL;
         border-radius: 15px;
         font-size: 0.8rem;
         margin-right: 0.5rem;
+    }
+    
+    .comment-section {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid #eee;
+    }
+
+    .comment-section h2 {
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .comment-list {
+      margin-bottom: 2rem;
+    }
+
+    .comment {
+      background: #f9f9f9;
+      padding: 1rem;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      border: 1px solid #e5e5e5;
+    }
+
+    .comment-meta {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 0.5rem;
+    }
+    
+    .comment-body {
+      white-space: pre-wrap;
+      line-height: 1.6;
+    }
+
+    .comment-form {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 8px;
+      border: 1px solid #e5e5e5;
+    }
+    
+    .comment-form h3 {
+      margin-top: 0;
+      margin-bottom: 1.5rem;
+      font-size: 1.5rem;
+    }
+
+    .form-group {
+      margin-bottom: 1rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 1rem;
+    }
+    
+    .comment-form button {
+      background-color: #333;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 4px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .comment-form button:hover {
+      background-color: #555;
     }
 </style>
