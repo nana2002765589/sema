@@ -3,19 +3,22 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout title="検索">
-  <main>
-    <div class="search-form">
-      <input type="search" placeholder="キーワードで検索" />
-      <button>
-        <img src="/sema/icons/search.svg" alt="検索" />
-      </button>
-    </div>
-  </main>
+  <p class="description">Anime Comic Hub Japan（アニコミ）は、マンガ・アニメ作品を より深く楽しむための機能を備えたポータルサイトです。</p>
+  <div class="search-form">
+    <input type="search" placeholder="キーワードで検索" />
+    <button>
+      <img src="/sema/icons/search.svg" alt="検索" />
+    </button>
+  </div>
 </Layout>
 
 <style>
-  main {
-    padding: 1rem;
+  .description {
+    text-align: center;
+    margin: 1rem auto;
+    font-size: 0.80rem;
+    color: #333;
+    max-width: 600px;
   }
   .search-form {
     display: flex;

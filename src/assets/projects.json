@@ -1,802 +1,194 @@
 [
   {
     "id": 1,
-    "title": "Crystal Guardian",
+    "title": "波うららかに、めおと日和",
     "category": [
-      "Fantasy",
-      "Action"
+      "日常",
+      "ラブコメ"
     ],
-    "synopsis": "Crystal Guardianのあらすじ。これはサンプルデータです。",
-    "characters": "キャラクター紹介のサンプルテキスト。",
-    "setting": "舞台背景のサンプルテキスト。",
+    "synopsis": "昭和11年、春。20歳のなつ美の元に帝国海軍に勤める瀧昌との縁談が舞い込む――。突然始まった、海軍の旦那さんとの結婚生活。家のことはもちろん男女のことにも(かなり)不慣れな二人の、ピュア度MAXな夫婦生活が始まる!潮風が吹けば、あなたのことを思い出す。戦前日本で暮らす夫婦の、春夏秋冬、つつましくも優しい日々の物語。",
+    "characters": "なつ美：本作のヒロイン。20歳。瀧昌の妻。瀧昌：帝国海軍に勤める青年士官。なつ美の夫。",
+    "setting": "戦後の日本、昭和11年から昭和20年にかけての東京を中心とした舞台設定。",
     "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
     "commentary": "解説のサンプルテキスト。",
     "analysis": "考察のサンプルテキスト。",
     "visibility": "public",
-    "views": 5678
+    "views": 12940
   },
   {
     "id": 2,
-    "title": "Galactic Rebellion",
+    "title": "鬼滅の刃",
     "category": [
-      "Sci-Fi",
-      "Adventure"
+      "ファンタジー",
+      "家族"
     ],
-    "synopsis": "Galactic Rebellionのあらすじ。これはサンプルデータです。",
-    "characters": "キャラクター紹介のサンプルテキスト。",
-    "setting": "舞台背景のサンプルテキスト。",
+    "synopsis": "時は大正時代。炭を売る心優しき少年・炭治郎の日常は、家族を鬼に皆殺しにされたことで一変する。唯一生き残ったものの、鬼に変貌した妹・禰豆子を元に戻すため、また家族を殺した鬼を討つため、炭治郎と禰豆子は旅立つ!! 血風剣戟冒険譚、開幕!!",
+    "characters": "竈門炭治郎：心優しき少年。妹の禰豆子を人間に戻すため鬼狩りの道へ。竈門禰豆子：炭治郎の妹。鬼に変貌するも兄を守ろうとする。我妻善逸：炭治郎の仲間。雷の呼吸の使い手。嘴平伊之助：炭治郎の仲間。獣の呼吸の使い手。",
+    "setting": "大正時代の日本各地を舞台に、鬼と人間の戦いが繰り広げられる。",
     "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
     "commentary": "解説のサンプルテキスト。",
     "analysis": "考察のサンプルテキスト。",
     "visibility": "public",
-    "views": 8765
+    "views": 11945
   },
   {
     "id": 3,
-    "title": "Silent Abyss",
+    "title": "薬屋のひとりごと",
     "category": [
-      "Horror",
-      "Mystery"
+      "薬",
+      "ミステリー"
     ],
-    "synopsis": "Silent Abyssのあらすじ。これはサンプルデータです。",
-    "characters": "キャラクター紹介のサンプルテキスト。",
-    "setting": "舞台背景のサンプルテキスト。",
+    "synopsis": "大陸の中央に位置するとある大国。その皇帝のおひざ元にその娘はいた。猫猫(マオマオ)、花街で薬師をやっていたが、現在後宮で下働き中である。けして美人とはいえぬその娘は、分相応に何事もなく年季があけるのを待っていた。まかり間違っても帝が自分を“御手付き”にしない自信があった。そんな中、帝の御子たちが皆短命であることを知る。存命の二人の御子も重い病と聞いた猫猫は、その原因を調べ始める。大絶賛されたあの痛快ミステリーが待望の文庫化。中世の東洋を舞台に「毒味役」の少女が宮中で起こる難事件を次々に解決する。。",
+    "characters": "猫猫(マオマオ)：本作の主人公。元花街の薬師で、現在は後宮で下働きをしている。壬氏：後宮を管理する美貌の宦官。皇帝：大国の支配者。猫猫の働く後宮を統括している。",
+    "setting": "中世の東洋を舞台にした架空の大国の後宮。",
     "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
     "commentary": "解説のサンプルテキスト。",
     "analysis": "考察のサンプルテキスト。",
     "visibility": "public",
-    "views": 1234
+    "views": 10376
   },
   {
     "id": 4,
-    "title": "Wandering Alchemist",
+    "title": "メダリスト",
     "category": [
-      "Fantasy",
-      "Slice of Life"
+      "スポーツ",
+      "夢"
     ],
-    "synopsis": "Wandering Alchemistのあらすじ。これはサンプルデータです。",
-    "characters": "キャラクター紹介のサンプルテキスト。",
-    "setting": "舞台背景のサンプルテキスト。",
+    "synopsis": "人生ふたつぶん懸けて、叶えたい夢がある!夢破れた青年・司と、見放された少女・いのり。でも二人には、誰より強いリンクへの執念があった。氷の上で出会った二人がタッグを組んで、フィギュアスケートで世界を目指す!",
+    "characters": "司馬亮：元フィギュアスケート選手。怪我で選手生命を絶たれ、コーチに転身。天野いのり：フィギュアスケート選手。過去のトラウマからリンクを避けていたが、司馬との出会いで再び挑戦を決意。",
+    "setting": "フィギュアスケートを舞台にした現代の日本。",
     "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
     "commentary": "解説のサンプルテキスト。",
     "analysis": "考察のサンプルテキスト。",
     "visibility": "public",
-    "views": 4321
+    "views": 9836
   },
   {
     "id": 5,
-    "title": "Forgotten Symphony",
+    "title": "ハイキュー!!",
     "category": [
-      "Mystery",
-      "Drama"
+      "スポーツ",
+      "青春"
     ],
-    "synopsis": "Forgotten Symphonyのあらすじ。これはサンプルデータです。",
-    "characters": "キャラクター紹介のサンプルテキスト。",
-    "setting": "舞台背景のサンプルテキスト。",
+    "synopsis": "おれは飛べる!! バレーボールに魅せられ、中学最初で最後の公式戦に臨んだ日向翔陽。だが、「コート上の王様」と異名を取る天才選手・影山に惨敗してしまう。リベンジを誓い烏野高校バレー部の門を叩く日向だが!?",
+    "characters": "日向翔陽：本作の主人公。小柄ながら高い跳躍力を持つバレーボール選手。影山飛雄：天才セッター。日向のライバルであり、チームメイトでもある。",
+    "setting": "中学、高校のバレーボールを舞台にした現代の日本。",
     "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
     "commentary": "食卓のシーンでは、登場人物たちは「どう食べるか」を話し合ってはいない。それでも、全員がほぼ同じ所作で食事を進めている。その背景にあるのが、日本の食文化における「食器ごとに役割が分かれている」という考え方である。日本の食事では、料理ごとに専用の食器が用意されることが多い。ご飯は茶碗、汁物は椀、主菜は平皿、副菜は小鉢。この分担によって、「どの料理をどう食べるか」「どの順番で口に運ぶか」が、言葉を使わずに共有される。特に印象的なのは、大皿から直接食べる行為が注意される点だ。これは単なる衛生面の配慮ではなく、料理を一度自分の領域に受け取ってから味わう」という感覚の表れとも考えられる。食器は、他者と自分との境界線として機能しているのだ。",
     "analysis": "考察のサンプルテキスト。",
     "visibility": "public",
-    "views": 9876
+    "views": 8745
   },
   {
     "id": 6,
-    "title": "Cursed Requiem",
+    "title": "チ。ー地球の運動についてー",
     "category": [
-      "Horror",
-      "Fantasy"
+      "天文学",
+      "歴史"
     ],
-    "synopsis": "Cursed Requiemのあらすじ。これはサンプルデータです。",
-    "characters": "キャラクター紹介のサンプルテキスト。",
-    "setting": "舞台背景のサンプルテキスト。",
+    "synopsis": "動かせ 歴史を 心を 運命を ――星を。舞台は15世紀のヨーロッパ。異端思想がガンガン火あぶりに処せられていた時代。主人公の神童・ラファウは飛び級で入学する予定の大学において、当時一番重要とされていた神学の専攻を皆に期待されていた。合理性を最も重んじるラファウにとってもそれは当然の選択であり、合理性に従っている限り世界は“チョロい”はずだった。しかし、ある日ラファウの元に現れた謎の男が研究していたのは、異端思想ド真ン中の「ある真理」だった――命を捨てても曲げられない信念があるか? 世界を敵に回しても貫きたい美学はあるか?アツい人間を描かせたら敵ナシの『ひゃくえむ。』魚豊が描く、歴史上最もアツい人々の物語!!ページを捲るたび血が沸き立つのを感じるはず。面白い漫画を読む喜びに打ち震えろ!!",
+    "characters": "ラファウ：本作の主人公。神童と称される若き学者。コペルニクス：天文学者。地動説を唱え、ラファウに大きな影響を与える。ティコ・ブラーエ：天文学者。ラファウの師であり、彼に観測の重要性を教える。",
+    "setting": "15世紀のヨーロッパを舞台に、天文学の発展と宗教的迫害が交錯する時代背景。",
     "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
     "commentary": "解説のサンプルテキスト。",
     "analysis": "考察のサンプルテキスト。",
     "visibility": "public",
-    "views": 2345
+    "views": 7542
   },
   {
     "id": 7,
-    "title": "Eternal Horizon",
+    "title": "Dr.STONE",
     "category": [
-      "Adventure",
-      "Sci-Fi"
+      "サバイバル",
+      "SF"
     ],
-    "synopsis": "Eternal Horizonのあらすじ。これはサンプルデータです。",
-    "characters": "キャラクター紹介のサンプルテキスト。",
-    "setting": "舞台背景のサンプルテキスト。",
+    "synopsis": "一瞬にして世界中すべての人間が石と化す、謎の現象に巻き込まれた高校生の大樹。数千年後──。目覚めた大樹とその友・千空はゼロから文明を作ることを決意する!!空前絶後のSFサバイバル冒険譚、開幕!!",
+    "characters": "大樹：本作の主人公。石化から目覚めた高校生。千空：天才科学者。大樹の友人で、文明再建を目指す。ユズリハ：大樹の幼馴染。弓の名手で、サバイバルに貢献する。",
+    "setting": "謎の現象で全人類が石化してから約3,700年後、文明が滅んだストーンワールド（石の世界）となった現代の日本が舞台",
     "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
     "commentary": "解説のサンプルテキスト。",
     "analysis": "考察のサンプルテキスト。",
     "visibility": "public",
-    "views": 7890
+    "views": 6459
   },
   {
     "id": 8,
-    "title": "Shadow Blade",
+    "title": "ひゃくえむ。",
     "category": [
-      "Action",
-      "Fantasy"
+      "スポーツ",
+      "青春"
     ],
-    "synopsis": "Shadow Bladeのあらすじ。これはサンプルデータです。",
-    "characters": "キャラクター紹介のサンプルテキスト。",
-    "setting": "舞台背景のサンプルテキスト。",
+    "synopsis": "100mだけ誰よりも速ければ、どんな問題も解決する──◇『チ。-地球の運動について-』の魚豊、“全力疾走”の連載デビュー作!!「100m走」に魅せられた人間たちの、狂気と情熱の青春譚!!少年トガシは生まれつき足が速かった。だから、100m走では全国1位だった。「友達」も「居場所」もすべて“それ”で手に入れた。しかし小6の夏、トガシは生まれて初めて敗北の恐怖を知った。そして同時に味わった、本気の高揚と昂奮を──。100全力疾走。時間にすれば数十秒。だがそこには、人生すべてを懸けるだけの、“熱”があった。",
+    "characters": "トガシ：本作の主人公。生まれつき足が速く、100m走で全国1位を誇る少年。リュウ：トガシのライバル。冷静沈着で戦略的な走りを得意とする。サクラ：トガシの幼馴染。彼の走りを支える存在。",
+    "setting": "放課後の校庭や競技場を舞台に、100mという一瞬の輝きを求めてライバルとして成長する物語。",
     "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
     "commentary": "解説のサンプルテキスト。",
     "analysis": "考察のサンプルテキスト。",
     "visibility": "public",
-    "views": 3456
+    "views": 5846
   },
   {
     "id": 9,
-    "title": "Crimson Genesis",
+    "title": "ダンダダン",
     "category": [
-      "Action",
-      "Sci-Fi"
+      "バトル",
+      "ラブコメ"
     ],
-    "synopsis": "Crimson Genesisのあらすじ。これはサンプルデータです。",
-    "characters": "キャラクター紹介のサンプルテキスト。",
-    "setting": "舞台背景のサンプルテキスト。",
+    "synopsis": "幽霊肯定派の女子校生・綾瀬桃と、同級生の怪奇現象オタク・オカルト君。互いに否定するUFOと怪異を信じさせるため、桃はUFOスポットの病院廃墟へ、オカルト君は心霊スポットのトンネルへ行くのだが…。運命の恋が始まる!? オカルティック怪奇バトル開幕!",
+    "characters": "綾瀬桃：幽霊肯定派の女子校生。オカルト君：怪奇現象オタクの同級生。",
+    "setting": "現代の日本（東京郊外）をベースにしつつ、怪異や宇宙人が日常に紛れ込む独特な雰囲気が特徴です。架空の地名「神越市（かみごえし）」が主要な舞台ですが、埼玉県の川越市や飯能市、群馬県の伊香保温泉など、実在の場所がモデルとして多く取り入れられています。",
     "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
     "commentary": "解説のサンプルテキスト。",
     "analysis": "考察のサンプルテキスト。",
     "visibility": "public",
-    "views": 6543
+    "views": 4543
   },
   {
     "id": 10,
-    "title": "Azure Traveler",
+    "title": "チェンソーマン",
     "category": [
-      "Slice of Life",
-      "Adventure"
+      "アクション",
+      "ダークファンタジー"
     ],
-    "synopsis": "Azure Travelerのあらすじ。これはサンプルデータです。",
-    "characters": "キャラクター紹介のサンプルテキスト。",
-    "setting": "舞台背景のサンプルテキスト。",
+    "synopsis": "悪魔のポチタと共にデビルハンターとして借金取りにこき使われる超貧乏な少年・デンジ。ド底辺の日々は、残忍な裏切りで一変する!! 悪魔をその身に宿し、悪魔を狩る、新時代ダークヒーローアクション、開幕!",
+    "characters": "デンジ：本作の主人公。悪魔のポチタと契約し、チェンソーマンとなる。パワー：血の悪魔と契約したデビルハンター。マキマ：公安対魔特異4課のリーダー。デンジを操ろうとする謎多き女性。",
+    "setting": "1990年代後半（1996〜1997年頃）の日本で、ソ連が現存するなど現実とは異なる歴史を歩んだ世界観が特徴です。東京（特に公安の拠点）や、寂れた田舎、北海道など、殺伐とした現代社会の風景がリアルに描かれています。 ",
     "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
     "commentary": "解説のサンプルテキスト。",
     "analysis": "考察のサンプルテキスト。",
     "visibility": "public",
-    "views": 1111
+    "views": 3877
   },
   {
     "id": 11,
-    "title": "Golden Knight",
+    "title": "薫る花は凛と咲く",
     "category": [
-      "Fantasy",
-      "Action"
+      "青春",
+      "恋愛"
     ],
-    "synopsis": "Golden Knightのあらすじ。これはサンプルデータです。",
-    "characters": "キャラクター紹介のサンプルテキスト。",
-    "setting": "舞台背景のサンプルテキスト。",
+    "synopsis": "とある場所に、隣接するふたつの高校がある。バカが集まる底辺男子校・千鳥高校と、由緒正しきお嬢様校・桔梗女子。強面で物静かな千鳥高校2年・紬 凛太郎は、実家のケーキ屋の手伝い中にお客として来ていた少女・和栗薫子と出会う。薫子との時間を心地よく感じる凛太郎だったが、彼女は徹底して千鳥を嫌う桔梗女子の生徒で……!?“近くて遠い”二人が織りなす、鮮やかな青春彩る学園物語!!",
+    "characters": "紬 凛太郎：千鳥高校の2年生。強面で物静かな性格。和栗薫子：桔梗女子の生徒。千鳥を嫌うが、凛太郎に心を開く。",
+    "setting": "東京の自由が丘（紬凛太郎の実家ケーキ屋周辺）と広尾（和栗薫子の通う桔梗学園周辺）がメインの舞台。",
     "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
     "commentary": "解説のサンプルテキスト。",
     "analysis": "考察のサンプルテキスト。",
     "visibility": "public",
-    "views": 2222
+    "views": 2224
   },
   {
     "id": 12,
-    "title": "Iron Princess",
+    "title": "キングダム",
     "category": [
-      "Mecha",
-      "Romance"
+      "バトル",
+      "歴史"
     ],
-    "synopsis": "Iron Princessのあらすじ。これはサンプルデータです。",
-    "characters": "キャラクター紹介のサンプルテキスト。",
-    "setting": "舞台背景のサンプルテキスト。",
+    "synopsis": "時は紀元前―。いまだ一度も統一されたことのない中国大陸は、500年の大戦争時代。苛烈な戦乱の世に生きる少年・信は、自らの腕で天下に名を成すことを目指す!!",
+    "characters": "信：本作の主人公。戦争孤児から天下の大将軍を目指す少年。嬴政：秦の若き王。後に始皇帝となる。河了貂：信の仲間であり、知略に長けた少女。",
+    "setting": "紀元前の中国大陸を舞台に、戦国時代の群雄割拠と秦の統一を描く。",
     "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
     "commentary": "解説のサンプルテキスト。",
     "analysis": "考察のサンプルテキスト。",
     "visibility": "public",
-    "views": 3333
-  },
-  {
-    "id": 13,
-    "title": "Lost Robot",
-    "category": [
-      "Sci-Fi",
-      "Mystery"
-    ],
-    "synopsis": "Lost Robotのあらすじ。これはサンプルデータです。",
-    "characters": "キャラクター紹介のサンプルテキスト。",
-    "setting": "舞台背景のサンプルテキスト。",
-    "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
-    "commentary": "解説のサンプルテキスト。",
-    "analysis": "考察のサンプルテキスト。",
-    "visibility": "public",
-    "views": 4444
-  },
-  {
-    "id": 14,
-    "title": "Ancient Chronicle",
-    "category": [
-      "Fantasy",
-      "Historical"
-    ],
-    "synopsis": "Ancient Chronicleのあらすじ。これはサンプルデータです。",
-    "characters": "キャラクター紹介のサンプルテキスト。",
-    "setting": "舞台背景のサンプルテキスト。",
-    "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
-    "commentary": "解説のサンプルテキスト。",
-    "analysis": "考察のサンプルテキスト。",
-    "visibility": "public",
-    "views": 5555
-  },
-  {
-    "id": 15,
-    "title": "Mysterious Sorcerer",
-    "category": [
-      "Fantasy",
-      "Mystery"
-    ],
-    "synopsis": "Mysterious Sorcererのあらすじ。これはサンプルデータです。",
-    "characters": "キャラクター紹介のサンプルテキスト。",
-    "setting": "舞台背景のサンプルテキスト。",
-    "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
-    "commentary": "解説のサンプルテキスト。",
-    "analysis": "考察のサンプルテキスト。",
-    "visibility": "public",
-    "views": 6666
-  },
-  {
-    "id": 16,
-    "title": "Galactic Guardian",
-    "category": [
-      "Sci-Fi",
-      "Action"
-    ],
-    "synopsis": "Galactic Guardianのあらすじ。これはサンプルデータです。",
-    "characters": "キャラクター紹介のサンプルテキスト。",
-    "setting": "舞台背景のサンプルテキスト。",
-    "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
-    "commentary": "解説のサンプルテキスト。",
-    "analysis": "考察のサンプルテキスト。",
-    "visibility": "unlisted",
-    "views": 7777
-  },
-  {
-    "id": 17,
-    "title": "Silent Rebellion",
-    "category": [
-      "Action",
-      "Drama"
-    ],
-    "synopsis": "Silent Rebellionのあらすじ。これはサンプルデータです。",
-    "characters": "キャラクター紹介のサンプルテキスト。",
-    "setting": "舞台背景のサンプルテキスト。",
-    "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
-    "commentary": "解説のサンプルテキスト。",
-    "analysis": "考察のサンプルテキスト。",
-    "visibility": "unlisted",
-    "views": 8888
-  },
-  {
-    "id": 18,
-    "title": "Wandering Genesis",
-    "category": [
-      "Adventure",
-      "Sci-Fi"
-    ],
-    "synopsis": "Wandering Genesisのあらすじ。これはサンプルデータです。",
-    "characters": "キャラクター紹介のサンプルテキスト。",
-    "setting": "舞台背景のサンプルテキスト。",
-    "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
-    "commentary": "解説のサンプルテキスト。",
-    "analysis": "考察のサンプルテキスト。",
-    "visibility": "unlisted",
-    "views": 9999
-  },
-  {
-    "id": 19,
-    "title": "Forgotten Traveler",
-    "category": [
-      "Mystery",
-      "Slice of Life"
-    ],
-    "synopsis": "Forgotten Travelerのあらすじ。これはサンプルデータです。",
-    "characters": "キャラクター紹介のサンプルテキスト。",
-    "setting": "舞台背景のサンプルテキスト。",
-    "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
-    "commentary": "解説のサンプルテキスト。",
-    "analysis": "考察のサンプルテキスト。",
-    "visibility": "unlisted",
-    "views": 1010
-  },
-  {
-    "id": 20,
-    "title": "Cursed Alchemist",
-    "category": [
-      "Fantasy",
-      "Horror"
-    ],
-    "synopsis": "Cursed Alchemistのあらすじ。これはサンプルデータです。",
-    "characters": "キャラクター紹介のサンプルテキスト。",
-    "setting": "舞台背景のサンプルテキスト。",
-    "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
-    "commentary": "解説のサンプルテキスト。",
-    "analysis": "考察のサンプルテキスト。",
-    "visibility": "unlisted",
-    "views": 2020
-  },
-  {
-    "id": 21,
-    "title": "Eternal Knight",
-    "category": [
-      "Fantasy",
-      "Action"
-    ],
-    "synopsis": "Eternal Knightのあらすじ。これはサンプルデータです。",
-    "characters": "キャラクター紹介のサンプルテキスト。",
-    "setting": "舞台背景のサンプルテキスト。",
-    "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
-    "commentary": "解説のサンプルテキスト。",
-    "analysis": "考察のサンプルテキスト。",
-    "visibility": "unlisted",
-    "views": 3030
-  },
-  {
-    "id": 22,
-    "title": "Crystal Princess",
-    "category": [
-      "Fantasy",
-      "Romance"
-    ],
-    "synopsis": "Crystal Princessのあらすじ。これはサンプルデータです。",
-    "characters": "キャラクター紹介のサンプルテキスト。",
-    "setting": "舞台背景のサンプルテキスト。",
-    "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
-    "commentary": "解説のサンプルテキスト。",
-    "analysis": "考察のサンプルテキスト。",
-    "visibility": "unlisted",
-    "views": 4040
-  },
-  {
-    "id": 23,
-    "title": "Shadow Robot",
-    "category": [
-      "Mecha",
-      "Action"
-    ],
-    "synopsis": "Shadow Robotのあらすじ。これはサンプルデータです。",
-    "characters": "キャラクター紹介のサンプルテキスト。",
-    "setting": "舞台背景のサンプルテキスト。",
-    "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
-    "commentary": "解説のサンプルテキスト。",
-    "analysis": "考察のサンプルテキスト。",
-    "visibility": "unlisted",
-    "views": 5050
-  },
-  {
-    "id": 24,
-    "title": "Crimson Chronicle",
-    "category": [
-      "Historical",
-      "Action"
-    ],
-    "synopsis": "Crimson Chronicleのあらすじ。これはサンプルデータです。",
-    "characters": "キャラクター紹介のサンプルテキスト。",
-    "setting": "舞台背景のサンプルテキスト。",
-    "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
-    "commentary": "解説のサンプルテキスト。",
-    "analysis": "考察のサンプルテキスト。",
-    "visibility": "unlisted",
-    "views": 6060
-  },
-  {
-    "id": 25,
-    "title": "Azure Sorcerer",
-    "category": [
-      "Fantasy",
-      "Adventure"
-    ],
-    "synopsis": "Azure Sorcererのあらすじ。これはサンプルデータです。",
-    "characters": "キャラクター紹介のサンプルテキスト。",
-    "setting": "舞台背景のサンプルテキスト。",
-    "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
-    "commentary": "解説のサンプルテキスト。",
-    "analysis": "考察のサンプルテキスト。",
-    "visibility": "unlisted",
-    "views": 7070
-  },
-  {
-    "id": 26,
-    "title": "Golden Guardian",
-    "category": [
-      "Action",
-      "Fantasy"
-    ],
-    "synopsis": "Golden Guardianのあらすじ。これはサンプルデータです。",
-    "characters": "キャラクター紹介のサンプルテキスト。",
-    "setting": "舞台背景のサンプルテキスト。",
-    "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
-    "commentary": "解説のサンプルテキスト。",
-    "analysis": "考察のサンプルテキスト。",
-    "visibility": "unlisted",
-    "views": 8080
-  },
-  {
-    "id": 27,
-    "title": "Iron Rebellion",
-    "category": [
-      "Mecha",
-      "Action"
-    ],
-    "synopsis": "Iron Rebellionのあらすじ。これはサンプルデータです。",
-    "characters": "キャラクター紹介のサンプルテキスト。",
-    "setting": "舞台背景のサンプルテキスト。",
-    "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
-    "commentary": "解説のサンプルテキスト。",
-    "analysis": "考察のサンプルテキスト。",
-    "visibility": "unlisted",
-    "views": 9090
-  },
-  {
-    "id": 28,
-    "title": "Lost Genesis",
-    "category": [
-      "Mystery",
-      "Sci-Fi"
-    ],
-    "synopsis": "Lost Genesisのあらすじ。これはサンプルデータです。",
-    "characters": "キャラクター紹介のサンプルテキスト。",
-    "setting": "舞台背景のサンプルテキスト。",
-    "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
-    "commentary": "解説のサンプルテキスト。",
-    "analysis": "考察のサンプルテキスト。",
-    "visibility": "unlisted",
-    "views": 1212
-  },
-  {
-    "id": 29,
-    "title": "Ancient Traveler",
-    "category": [
-      "Historical",
-      "Adventure"
-    ],
-    "synopsis": "Ancient Travelerのあらすじ。これはサンプルデータです。",
-    "characters": "キャラクター紹介のサンプルテキスト。",
-    "setting": "舞台背景のサンプルテキスト。",
-    "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
-    "commentary": "解説のサンプルテキスト。",
-    "analysis": "考察のサンプルテキスト。",
-    "visibility": "unlisted",
-    "views": 2323
-  },
-  {
-    "id": 30,
-    "title": "Mysterious Alchemist",
-    "category": [
-      "Fantasy",
-      "Mystery"
-    ],
-    "synopsis": "Mysterious Alchemistのあらすじ。これはサンプルデータです。",
-    "characters": "キャラクター紹介のサンプルテキスト。",
-    "setting": "舞台背景のサンプルテキスト。",
-    "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
-    "commentary": "解説のサンプルテキスト。",
-    "analysis": "考察のサンプルテキスト。",
-    "visibility": "unlisted",
-    "views": 3434
-  },
-  {
-    "id": 31,
-    "title": "Galactic Knight",
-    "category": [
-      "Sci-Fi",
-      "Action"
-    ],
-    "synopsis": "Galactic Knightのあらすじ。これはサンプルデータです。",
-    "characters": "キャラクター紹介のサンプルテキスト。",
-    "setting": "舞台背景のサンプルテキスト。",
-    "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
-    "commentary": "解説のサンプルテキスト。",
-    "analysis": "考察のサンプルテキスト。",
-    "visibility": "public",
-    "views": 4545
-  },
-  {
-    "id": 32,
-    "title": "Silent Princess",
-    "category": [
-      "Drama",
-      "Romance"
-    ],
-    "synopsis": "Silent Princessのあらすじ。これはサンプルデータです。",
-    "characters": "キャラクター紹介のサンプルテキスト。",
-    "setting": "舞台背景のサンプルテキスト。",
-    "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
-    "commentary": "解説のサンプルテキスト。",
-    "analysis": "考察のサンプルテキスト。",
-    "visibility": "public",
-    "views": 5656
-  },
-  {
-    "id": 33,
-    "title": "Wandering Robot",
-    "category": [
-      "Sci-Fi",
-      "Slice of Life"
-    ],
-    "synopsis": "Wandering Robotのあらすじ。これはサンプルデータです。",
-    "characters": "キャラクター紹介のサンプルテキスト。",
-    "setting": "舞台背景のサンプルテキスト。",
-    "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
-    "commentary": "解説のサンプルテキスト。",
-    "analysis": "考察のサンプルテキスト。",
-    "visibility": "public",
-    "views": 6767
-  },
-  {
-    "id": 34,
-    "title": "Forgotten Chronicle",
-    "category": [
-      "Mystery",
-      "Historical"
-    ],
-    "synopsis": "Forgotten Chronicleのあらすじ。これはサンプルデータです。",
-    "characters": "キャラクター紹介のサンプルテキスト。",
-    "setting": "舞台背景のサンプルテキスト。",
-    "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
-    "commentary": "解説のサンプルテキスト。",
-    "analysis": "考察のサンプルテキスト。",
-    "visibility": "public",
-    "views": 7878
-  },
-  {
-    "id": 35,
-    "title": "Cursed Sorcerer",
-    "category": [
-      "Fantasy",
-      "Horror"
-    ],
-    "synopsis": "Cursed Sorcererのあらすじ。これはサンプルデータです。",
-    "characters": "キャラクター紹介のサンプルテキスト。",
-    "setting": "舞台背景のサンプルテキスト。",
-    "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
-    "commentary": "解説のサンプルテキスト。",
-    "analysis": "考察のサンプルテキスト。",
-    "visibility": "public",
-    "views": 8989
-  },
-  {
-    "id": 36,
-    "title": "Eternal Guardian",
-    "category": [
-      "Action",
-      "Fantasy"
-    ],
-    "synopsis": "Eternal Guardianのあらすじ。これはサンプルデータです。",
-    "characters": "キャラクター紹介のサンプルテキスト。",
-    "setting": "舞台背景のサンプルテキスト。",
-    "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
-    "commentary": "解説のサンプルテキスト。",
-    "analysis": "考察のサンプルテキスト。",
-    "visibility": "public",
-    "views": 9000
-  },
-  {
-    "id": 37,
-    "title": "Crystal Rebellion",
-    "category": [
-      "Action",
-      "Fantasy"
-    ],
-    "synopsis": "Crystal Rebellionのあらすじ。これはサンプルデータです。",
-    "characters": "キャラクター紹介のサンプルテキスト。",
-    "setting": "舞台背景のサンプルテキスト。",
-    "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
-    "commentary": "解説のサンプルテキスト。",
-    "analysis": "考察のサンプルテキスト。",
-    "visibility": "public",
-    "views": 1313
-  },
-  {
-    "id": 38,
-    "title": "Shadow Genesis",
-    "category": [
-      "Action",
-      "Mystery"
-    ],
-    "synopsis": "Shadow Genesisのあらすじ。これはサンプルデータです。",
-    "characters": "キャラクター紹介のサンプルテキスト。",
-    "setting": "舞台背景のサンプルテキスト。",
-    "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
-    "commentary": "解説のサンプルテキスト。",
-    "analysis": "考察のサンプルテキスト。",
-    "visibility": "public",
-    "views": 2424
-  },
-  {
-    "id": 39,
-    "title": "Crimson Traveler",
-    "category": [
-      "Adventure",
-      "Action"
-    ],
-    "synopsis": "Crimson Travelerのあらすじ。これはサンプルデータです。",
-    "characters": "キャラクター紹介のサンプルテキスト。",
-    "setting": "舞台背景のサンプルテキスト。",
-    "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
-    "commentary": "解説のサンプルテキスト。",
-    "analysis": "考察のサンプルテキスト。",
-    "visibility": "public",
-    "views": 3535
-  },
-  {
-    "id": 40,
-    "title": "Azure Alchemist",
-    "category": [
-      "Fantasy",
-      "Slice of Life"
-    ],
-    "synopsis": "Azure Alchemistのあらすじ。これはサンプルデータです。",
-    "characters": "キャラクター紹介のサンプルテキスト。",
-    "setting": "舞台背景のサンプルテキスト。",
-    "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
-    "commentary": "解説のサンプルテキスト。",
-    "analysis": "考察のサンプルテキスト。",
-    "visibility": "public",
-    "views": 4646
-  },
-  {
-    "id": 41,
-    "title": "Golden Knight",
-    "category": [
-      "Fantasy",
-      "Action"
-    ],
-    "synopsis": "Golden Knightのあらすじ。これはサンプルデータです。",
-    "characters": "キャラクター紹介のサンプルテキスト。",
-    "setting": "舞台背景のサンプルテキスト。",
-    "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
-    "commentary": "解説のサンプルテキスト。",
-    "analysis": "考察のサンプルテキスト。",
-    "visibility": "unlisted",
-    "views": 5757
-  },
-  {
-    "id": 42,
-    "title": "Iron Princess",
-    "category": [
-      "Mecha",
-      "Romance"
-    ],
-    "synopsis": "Iron Princessのあらすじ。これはサンプルデータです。",
-    "characters": "キャラクター紹介のサンプルテキスト。",
-    "setting": "舞台背景のサンプルテキスト。",
-    "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
-    "commentary": "解説のサンプルテキスト。",
-    "analysis": "考察のサンプルテキスト。",
-    "visibility": "unlisted",
-    "views": 6868
-  },
-  {
-    "id": 43,
-    "title": "Lost Robot",
-    "category": [
-      "Sci-Fi",
-      "Mystery"
-    ],
-    "synopsis": "Lost Robotのあらすじ。これはサンプルデータです。",
-    "characters": "キャラクター紹介のサンプルテキスト。",
-    "setting": "舞台背景のサンプルテキスト。",
-    "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
-    "commentary": "解説のサンプルテキスト。",
-    "analysis": "考察のサンプルテキスト。",
-    "visibility": "unlisted",
-    "views": 7979
-  },
-  {
-    "id": 44,
-    "title": "Ancient Chronicle",
-    "category": [
-      "Fantasy",
-      "Historical"
-    ],
-    "synopsis": "Ancient Chronicleのあらすじ。これはサンプルデータです。",
-    "characters": "キャラクター紹介のサンプルテキスト。",
-    "setting": "舞台背景のサンプルテキスト。",
-    "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
-    "commentary": "解説のサンプルテキスト。",
-    "analysis": "考察のサンプルテキスト。",
-    "visibility": "unlisted",
-    "views": 8000
-  },
-  {
-    "id": 45,
-    "title": "Mysterious Sorcerer",
-    "category": [
-      "Fantasy",
-      "Mystery"
-    ],
-    "synopsis": "Mysterious Sorcererのあらすじ。これはサンプルデータです。",
-    "characters": "キャラクター紹介のサンプルテキスト。",
-    "setting": "舞台背景のサンプルテキスト。",
-    "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
-    "commentary": "解説のサンプルテキスト。",
-    "analysis": "考察のサンプルテキスト。",
-    "visibility": "unlisted",
-    "views": 8181
-  },
-  {
-    "id": 46,
-    "title": "Galactic Guardian",
-    "category": [
-      "Sci-Fi",
-      "Action"
-    ],
-    "synopsis": "Galactic Guardianのあらすじ。これはサンプルデータです。",
-    "characters": "キャラクター紹介のサンプルテキスト。",
-    "setting": "舞台背景のサンプルテキスト。",
-    "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
-    "commentary": "解説のサンプルテキスト。",
-    "analysis": "考察のサンプルテキスト。",
-    "visibility": "private",
-    "views": 8282
-  },
-  {
-    "id": 47,
-    "title": "Silent Rebellion",
-    "category": [
-      "Action",
-      "Drama"
-    ],
-    "synopsis": "Silent Rebellionのあらすじ。これはサンプルデータです。",
-    "characters": "キャラクター紹介のサンプルテキスト。",
-    "setting": "舞台背景のサンプルテキスト。",
-    "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
-    "commentary": "解説のサンプルテキスト。",
-    "analysis": "考察のサンプルテキスト。",
-    "visibility": "private",
-    "views": 8383
-  },
-  {
-    "id": 48,
-    "title": "Wandering Genesis",
-    "category": [
-      "Adventure",
-      "Sci-Fi"
-    ],
-    "synopsis": "Wandering Genesisのあらすじ。これはサンプルデータです。",
-    "characters": "キャラクター紹介のサンプルテキスト。",
-    "setting": "舞台背景のサンプルテキスト。",
-    "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
-    "commentary": "解説のサンプルテキスト。",
-    "analysis": "考察のサンプルテキスト。",
-    "visibility": "private",
-    "views": 8484
-  },
-  {
-    "id": 49,
-    "title": "Forgotten Traveler",
-    "category": [
-      "Mystery",
-      "Slice of Life"
-    ],
-    "synopsis": "Forgotten Travelerのあらすじ。これはサンプルデータです。",
-    "characters": "キャラクター紹介のサンプルテキスト。",
-    "setting": "舞台背景のサンプルテキスト。",
-    "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
-    "commentary": "解説のサンプルテキスト。",
-    "analysis": "考察のサンプルテキスト。",
-    "visibility": "private",
-    "views": 8585
-  },
-  {
-    "id": 50,
-    "title": "Cursed Alchemist",
-    "category": [
-      "Fantasy",
-      "Horror"
-    ],
-    "synopsis": "Cursed Alchemistのあらすじ。これはサンプルデータです。",
-    "characters": "キャラクター紹介のサンプルテキスト。",
-    "setting": "舞台背景のサンプルテキスト。",
-    "map_url": "https://via.placeholder.com/800x400.png?text=Map+Placeholder",
-    "commentary": "解説のサンプルテキスト。",
-    "analysis": "考察のサンプルテキスト。",
-    "visibility": "private",
-    "views": 8686
+    "views": 1765
   }
 ]

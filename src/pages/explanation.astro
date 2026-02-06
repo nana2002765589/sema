@@ -1,0 +1,213 @@
+---
+import Layout from '../layouts/Layout.astro';
+import explanations from "../assets/explanations.json";
+import SubHeader from '../components/SubHeader.astro';
+
+const allCategories = explanations.flatMap(p => p.category);
+const uniqueCategories = [...new Set(allCategories)];
+const base = import.meta.env.BASE_URL;
+---
+
+<Layout title="SEMA - 解説">
+	<SubHeader />
+
+	<section>
+		<h2>解説</h2>
+
+		<div class="filter-container" id="category-filters">
+			<strong>カテゴリー:</strong>
+			<button class="filter-btn active" data-category="All">すべて</button>
+			{uniqueCategories.map(category => (
+				<button class="filter-btn" data-category={category}>{category}</button>
+			))}
+		</div>
+
+		<div class="explanation-list">
+			{explanations.map((explanation) => (
+				<a href={`${base}/explanations/${explanation.id}`} class="card" data-categories={explanation.category.join(' ')} data-id={explanation.id}>
+					<button class="bookmark-btn" aria-label="ブックマークに追加">
+						<img src={`${base}/icons/bookmark.svg`} alt="ブックマーク" />
+					</button>
+					<img src={`/sema/thumbnails/${explanation.id}.png`} alt={explanation.title} >
+					<img src={`/sema/thumbnails/${explanation.id}.png`} alt={explanation.title} >
+					<h3>{explanation.title}</h3>
+					<p>{explanation.content}</p>
+					<div class="categories">
+						{explanation.category.map(cat => <span class="category">{cat}</span>)}
+					</div>
+				</a>
+			))}
+		</div>
+	</section>
+
+	<script>
+		const categoryFilters = document.querySelector('#category-filters');
+		const explanationCards = document.querySelectorAll('.card');
+
+		// Filtering logic
+		let selectedCategory = 'All';
+
+		function applyFilters() {
+			explanationCards.forEach(card => {
+				const cardCategories = card.dataset.categories.split(' ');
+				const categoryMatch = selectedCategory === 'All' || cardCategories.includes(selectedCategory);
+				if (categoryMatch) {
+					card.style.display = 'block';
+				} else {
+					card.style.display = 'none';
+				}
+			});
+		}
+
+		categoryFilters.addEventListener('click', (e) => {
+			const target = e.target;
+			if (!target.matches('.filter-btn')) return;
+
+			categoryFilters.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+			target.classList.add('active');
+			selectedCategory = target.dataset.category;
+			applyFilters();
+		});
+
+		applyFilters();
+
+		// Bookmark logic
+		const bookmarkButtons = document.querySelectorAll('.bookmark-btn');
+		let bookmarkedExplanations = JSON.parse(localStorage.getItem('bookmarkedExplanations')) || [];
+
+		function toggleBookmark(id) {
+			const explanationId = parseInt(id, 10);
+			const index = bookmarkedExplanations.indexOf(explanationId);
+
+			if (index > -1) {
+				bookmarkedExplanations.splice(index, 1); // Remove from bookmarks
+			} else {
+				bookmarkedExplanations.push(explanationId); // Add to bookmarks
+			}
+			localStorage.setItem('bookmarkedExplanations', JSON.stringify(bookmarkedExplanations));
+			updateBookmarkButtons();
+		}
+
+		function updateBookmarkButtons() {
+			explanationCards.forEach(card => {
+				const id = parseInt(card.dataset.id, 10);
+				const button = card.querySelector('.bookmark-btn');
+				if (bookmarkedExplanations.includes(id)) {
+					button.classList.add('active');
+				} else {
+					button.classList.remove('active');
+				}
+			});
+		}
+
+		bookmarkButtons.forEach(button => {
+			button.addEventListener('click', (e) => {
+				e.preventDefault();
+				e.stopPropagation();
+				const card = button.closest('.card');
+				toggleBookmark(card.dataset.id);
+			});
+		});
+
+		// Initial state update on page load
+		updateBookmarkButtons();
+	</script>
+</Layout>
+
+<style>
+	img {
+		max-width: 100%;
+		height: auto;
+		border-radius: 4px;
+		margin-bottom: 0.5rem;
+	}
+	.filter-container {
+		margin-bottom: 1rem;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+		align-items: center;
+	}
+	.filter-btn {
+		background-color: #eee;
+		border: 1px solid #ddd;
+		padding: 0.5em 1em;
+		border-radius: 20px;
+		cursor: pointer;
+		transition: background-color 0.2s;
+	}
+	.filter-btn:hover {
+		background-color: #ddd;
+	}
+	.filter-btn.active {
+		background-color: #333;
+		color: white;
+		border-color: #333;
+	}
+	.explanation-list {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+		gap: 1rem;
+	}
+	.card {
+		position: relative;
+		border: 1px solid #ddd;
+		border-radius: 8px;
+		padding: 1rem;
+		box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+		transition: box-shadow 0.2s, transform 0.2s;
+		display: block;
+		flex-direction: column;
+		width: 100%;
+		color: inherit;
+		text-decoration: none;
+	}
+	.card p {
+		flex-grow: 1;
+	}
+	.card:hover {
+		box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+		transform: translateY(-2px);
+	}
+	.card h3 {
+		margin-top: 0;
+	}
+	.categories {
+		margin-top: 1rem;
+	}
+	.category {
+		display: inline-block;
+		background-color: #eee;
+		padding: 0.25em 0.75em;
+		border-radius: 15px;
+		font-size: 0.8rem;
+		margin-right: 0.5rem;
+	}
+	.bookmark-btn {
+		position: absolute;
+		top: 1rem;
+		right: 1rem;
+		background: none;
+		border: none;
+		cursor: pointer;
+		padding: 0;
+		width: 24px;
+		height: 24px;
+	}
+	.bookmark-btn img {
+		width: 100%;
+		height: 100%;
+		opacity: 0.5;
+		transition: opacity 0.2s;
+	}
+	.bookmark-btn:hover img {
+		opacity: 1;
+	}
+	.bookmark-btn.active img {
+		opacity: 1;
+		/* You can use a different color or a filled icon for active state */
+		/* For example, if you have an active icon: */
+		/* content: url('/icons/bookmark-filled.svg'); */
+		filter: grayscale(0%) opacity(1);
+	}
+</style>

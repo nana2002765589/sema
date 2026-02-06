@@ -4,89 +4,70 @@ const base = import.meta.env.BASE_URL;
 
 <header>
   <nav>
-    <a href={base} class="logo">
-      <img src={`${base}/logo.svg`} alt="Logo" />
-    </a>
-    <div id="user-actions">
-      <div id="user-navigation" class="user-navigation" style="display: none;">
-        <a href={`${base}/mypage`} class="mypage">
-          <img src={`${base}/icons/user.svg`} alt="My Page" />
-        </a>
-        <button id="logout-button">ログアウト</button>
-      </div>
-      <div id="login-container" style="display: none;">
-        <a href={`${base}/login`} id="login-button">ログイン</a>
-      </div>
+    <button class="hamburger" aria-label="Main menu">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="30"
+        height="30"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+    </button>
+    <div class="logo">
+      <a href={base}>
+        <img src={`${base}/anicomi_logo.png`} alt="Anicomi Logo" />
+      </a>
     </div>
+    <a href=`${base}/login` class="login-button">ログイン</a>
   </nav>
 </header>
 
-<script>
-  function setupHeader() {
-    const userNavigation = document.getElementById('user-navigation');
-    const loginContainer = document.getElementById('login-container');
-    const logoutButton = document.getElementById('logout-button');
-    const isLoggedIn = localStorage.getItem('isLoggedIn');
-
-    if (isLoggedIn) {
-      if (userNavigation) userNavigation.style.display = 'flex';
-      if (loginContainer) loginContainer.style.display = 'none';
-    } else {
-      if (userNavigation) userNavigation.style.display = 'none';
-      if (loginContainer) loginContainer.style.display = 'block';
-    }
-
-    if (logoutButton) {
-      logoutButton.addEventListener('click', () => {
-        localStorage.removeItem('isLoggedIn');
-        window.location.href = `${import.meta.env.BASE_URL}/login`;
-      });
-    }
-  }
-
-  document.addEventListener('astro:page-load', setupHeader);
-  setupHeader(); // Also run on initial load
-</script>
-
 <style>
   header {
-    background-color: #f8f9fa;
-    padding: 1rem 2rem;
-    border-bottom: 1px solid #e7e7e7;
+    background-color: #fff;
+    border-bottom: 1px solid #e0e0e0;
   }
   nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    height: 64px;
+    padding: 0 16px;
+    position: relative;
+  }
+  .hamburger {
+    /*background: transparent;*/
+    border: none;
+    border-color: #003399;
+    /*padding: 0;*/
+    cursor: pointer;
+    z-index: 2;
+  }
+  .logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
   }
   .logo img {
-    height: 40px;
+    height: 25px;
   }
-  #user-actions {
-    display: flex;
-    align-items: center;
-  }
-  .user-navigation {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-  }
-  .mypage img {
-    height: 30px;
-    display: block;
-  }
-  #logout-button, #login-button {
-    padding: 0.5rem 1rem;
-    background-color: #333;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 0.9rem;
+  .login-button {
+    background-color: #003399;
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 3px;
     text-decoration: none;
-    transition: background-color 0.2s;
-  }
-  #logout-button:hover, #login-button:hover {
-    background-color: #555;
+    font-size: 14px;
+    font-weight: bold;
+    z-index: 2;
   }
 </style>

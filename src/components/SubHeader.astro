@@ -7,7 +7,9 @@ const { showTabs = true } = Astro.props;
 const normalizedPathname = pathname.length > 1 && pathname.endsWith('/') ? pathname.slice(0, -1) : pathname;
 
 const tabs = [
-    { name: '作品', href: base === '/' ? '/' : base },
+    { name: 'マンガ', href: base === '/' ? '/' : base },
+    { name: 'アニメ', href: `${base}/anime` },
+    { name: '解説', href: `${base}/explanation` },
     { name: '考察', href: `${base}/insights` }
 ]
 ---
@@ -20,8 +22,8 @@ const tabs = [
 
                 if (tab.name === '作品') {
                     const projectsRoot = base === '/' ? '/' : base;
-                    // Active if it's the root page or a projects page, but not insights
-                    isActive = (normalizedPathname === projectsRoot || normalizedPathname.startsWith(`${projectsRoot}/projects`)) && !normalizedPathname.startsWith(`${base}/insights`);
+                    // Active if it's the root page or a projects page, but not insights or explanation
+                    isActive = (normalizedPathname === projectsRoot || normalizedPathname.startsWith(`${projectsRoot}/projects`)) && !normalizedPathname.startsWith(`${base}/insights`) && !normalizedPathname.startsWith(`${base}/explanation`);
                 } else {
                     // Active if the path starts with the tab's href
                     isActive = normalizedPathname.startsWith(tabPath);
@@ -48,6 +50,7 @@ const tabs = [
         gap: 2rem;
         max-width: 1200px;
         margin: 0 auto;
+        flex-wrap: wrap;
     }
     a {
         padding: 1rem 0.5rem;
@@ -63,5 +66,15 @@ const tabs = [
     a.active {
         color: #000;
         border-bottom-color: #000;
+    }
+
+    @media (max-width: 768px) {
+        nav {
+            gap: 1rem;
+            justify-content: center;
+        }
+        a {
+            padding: 0.75rem 0.25rem;
+        }
     }
 </style>

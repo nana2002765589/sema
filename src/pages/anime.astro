@@ -1,0 +1,234 @@
+---
+import Layout from '../layouts/Layout.astro';
+import projectsData from "../assets/projects.json";
+import SubHeader from '../components/SubHeader.astro';
+
+const base = import.meta.env.BASE_URL;
+const projects = projectsData.sort((a, b) => b.views - a.views);
+
+const allProjectCategories = projects.flatMap(p => p.category);
+const uniqueProjectCategories = [...new Set(allProjectCategories)];
+---
+
+<Layout title="SEMA - アニメ">
+	<SubHeader />
+
+	<div id="projects-section">
+		<section>
+			<h2>アニメ</h2>
+
+			<div class="filter-container" id="project-category-filters">
+				<strong>カテゴリー:</strong>
+				<button class="filter-btn active" data-category="All">すべて</button>
+				{uniqueProjectCategories.map(category => (
+					<button class="filter-btn" data-category={category}>{category}</button>
+				))}
+			</div>
+
+			<div class="project-list">
+				{projects.map((project, index) => (
+					<div class="card" data-categories={project.category.join(' ')} data-id={project.id}>
+						<a href={`${base}/projects/${project.id}`} class="card-link">
+							<div class="rank-badge">No.{index + 1}</div>
+							<h3>{project.title}</h3>
+							<p>{project.synopsis}</p>
+							<div class="categories">
+								{project.category.map(cat => <span class="category">{cat}</span>)}
+							</div>
+							<div class="views">👁️ {project.views.toLocaleString()}</div>
+						</a>
+						<button class="bookmark-btn" aria-label="ブックマークに追加">
+							<img src={`${base}/icons/bookmark.svg`} alt="ブックマーク" />
+						</button>
+					</div>
+				))}
+			</div>
+		</section>
+	</div>
+
+	<script>
+		document.addEventListener('DOMContentLoaded', () => {
+			const projectCategoryFilters = document.querySelector('#project-category-filters');
+			const projectCards = document.querySelectorAll('#projects-section .card');
+
+			let selectedProjectCategory = 'All';
+			
+			function applyFilters(cards, selectedCategory) {
+				cards.forEach(card => {
+					const cardCategories = card.dataset.categories.split(' ');
+					const categoryMatch = selectedCategory === 'All' || cardCategories.includes(selectedCategory);
+
+					if (categoryMatch) {
+						card.style.display = 'flex';
+					} else {
+						card.style.display = 'none';
+					}
+				});
+			}
+
+			projectCategoryFilters.addEventListener('click', (e) => {
+				const target = e.target;
+				if (!target.matches('.filter-btn')) return;
+
+				projectCategoryFilters.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+				target.classList.add('active');
+				selectedProjectCategory = target.dataset.category;
+				applyFilters(projectCards, selectedProjectCategory);
+			});
+
+			applyFilters(projectCards, selectedProjectCategory);
+
+			const bookmarkButtonsProjects = document.querySelectorAll('#projects-section .bookmark-btn');
+			let bookmarkedProjects = JSON.parse(localStorage.getItem('bookmarkedProjects')) || [];
+
+			function toggleBookmarkProject(id) {
+				const projectId = parseInt(id, 10);
+				const index = bookmarkedProjects.indexOf(projectId);
+				if (index > -1) {
+					bookmarkedProjects.splice(index, 1);
+				} else {
+					bookmarkedProjects.push(projectId);
+				}
+				localStorage.setItem('bookmarkedProjects', JSON.stringify(bookmarkedProjects));
+				updateBookmarkButtonsProjects();
+			}
+
+			function updateBookmarkButtonsProjects() {
+				projectCards.forEach(card => {
+					const id = parseInt(card.dataset.id, 10);
+					const button = card.querySelector('.bookmark-btn');
+					if (bookmarkedProjects.includes(id)) {
+						button.classList.add('active');
+					} else {
+						button.classList.remove('active');
+					}
+				});
+			}
+
+			bookmarkButtonsProjects.forEach(button => {
+				button.addEventListener('click', (e) => {
+					e.stopPropagation();
+					const card = button.closest('.card');
+					toggleBookmarkProject(card.dataset.id);
+				});
+			});
+			
+			updateBookmarkButtonsProjects();
+		});
+	</script>
+</Layout>
+
+<style>
+	.filter-container {
+		margin-bottom: 1rem;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+		align-items: center;
+	}
+	.filter-btn {
+		background-color: #eee;
+		border: 1px solid #ddd;
+		padding: 0.5em 1em;
+		border-radius: 20px;
+		cursor: pointer;
+		transition: background-color 0.2s;
+	}
+	.filter-btn:hover {
+		background-color: #ddd;
+	}
+	.filter-btn.active {
+		background-color: #333;
+		color: white;
+		border-color: #333;
+	}
+	.project-list {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+		gap: 1rem;
+	}
+	.card {
+		border: 1px solid #ddd;
+		border-radius: 8px;
+		padding: 1rem;
+		box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+		transition: box-shadow 0.2s, transform 0.2s;
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		position: relative;
+	}
+	.card-link {
+		text-decoration: none;
+		color: inherit;
+		display: flex;
+		flex-direction: column;
+		flex-grow: 1;
+	}
+	.card p {
+		flex-grow: 1;
+	}
+	.card:hover {
+		box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+		transform: translateY(-2px);
+	}
+	.card h3 {
+		margin-top: 0;
+		padding-top: 1.5rem; /* space for the rank badge */
+	}
+	.categories {
+		margin-top: 1rem;
+	}
+	.category {
+		display: inline-block;
+		background-color: #eee;
+		padding: 0.25em 0.75em;
+		border-radius: 15px;
+		font-size: 0.8rem;
+		margin-right: 0.5rem;
+	}
+	.rank-badge {
+		position: absolute;
+		top: -10px;
+		left: -10px;
+		background-color: #ff4757;
+		color: white;
+		padding: 0.5em 0.8em;
+		border-radius: 20px;
+		font-size: 0.9rem;
+		font-weight: bold;
+		box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+		z-index: 1;
+	}
+	.views {
+		margin-top: 1rem;
+		font-size: 0.9rem;
+		color: #555;
+		text-align: right;
+	}
+	.bookmark-btn, .bookmark-btn-insights {
+		position: absolute;
+		top: 1rem;
+		right: 1rem;
+		background: none;
+		border: none;
+		cursor: pointer;
+		padding: 0;
+		width: 24px;
+		height: 24px;
+		z-index: 2;
+	}
+	.bookmark-btn img, .bookmark-btn-insights img {
+		width: 100%;
+		height: 100%;
+		opacity: 0.5;
+		transition: opacity 0.2s;
+	}
+	.bookmark-btn:hover img, .bookmark-btn-insights:hover img {
+		opacity: 1;
+	}
+	.bookmark-btn.active img, .bookmark-btn-insights.active img {
+		opacity: 1;
+		filter: grayscale(0%) opacity(1);
+	}
+</style>

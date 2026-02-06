@@ -16,11 +16,24 @@ const uniqueInsightCategories = [...new Set(allInsightCategories)];
 ---
 
 <Layout title="SEMA - 作品">
-	<SubHeader />
-
 	<div class="search-container">
-		<input type="search" id="search-box" placeholder="作品や考察を検索...">
+		<img src={`${base}/icons/search.svg`} alt="Search" class="search-icon" />
+		<input type="search" id="search-box" placeholder="検索">
 	</div>
+
+	<div class="slideshow-container">
+		<div class="slide fade">
+			<img src={`${base}/jumpallstar.jpg`} alt="Jump All Star">
+		</div>
+		<div class="slide fade">
+			<img src={`${base}/jyannmaga.jpg`} alt="Jyannmaga">
+		</div>
+		<div class="slide fade">
+			<img src={`${base}/ribon.jpeg`} alt="Ribon">
+		</div>
+	</div>
+
+	<SubHeader />
 
 	<div id="projects-section">
 		<section>
@@ -39,6 +52,7 @@ const uniqueInsightCategories = [...new Set(allInsightCategories)];
 					<div class="card" data-categories={project.category.join(' ')} data-id={project.id}>
 						<a href={`${base}/projects/${project.id}`} class="card-link">
 							<div class="rank-badge">No.{index + 1}</div>
+							<img src={`/sema/thumbnails/${project.id}.png`} alt={project.title}>
 							<h3>{project.title}</h3>
 							<p>{project.synopsis}</p>
 							<div class="categories">
@@ -91,6 +105,22 @@ const uniqueInsightCategories = [...new Set(allInsightCategories)];
 
 	<script>
 		document.addEventListener('DOMContentLoaded', () => {
+			// Slideshow logic
+			let slideIndex = 0;
+			showSlides();
+
+			function showSlides() {
+				let i;
+				const slides = document.querySelectorAll(".slide");
+				for (i = 0; i < slides.length; i++) {
+					slides[i].style.display = "none";
+				}
+				slideIndex++;
+				if (slideIndex > slides.length) {slideIndex = 1}
+				slides[slideIndex-1].style.display = "block";
+				setTimeout(showSlides, 3000); // Change image every 3 seconds
+			}
+
 			// Tab and filter logic from before...
 			const subHeaderTabs = document.querySelectorAll('.sub-header nav a');
 			const projectsSection = document.querySelector('#projects-section');
@@ -232,6 +262,55 @@ const uniqueInsightCategories = [...new Set(allInsightCategories)];
 </Layout>
 
 <style>
+	.search-container {
+		position: relative;
+		margin: 20px auto;
+		width: 50%;
+	}
+	.search-icon {
+		position: absolute;
+		left: 15px;
+		top: 50%;
+		transform: translateY(-50%);
+		height: 20px;
+		width: 20px;
+	}
+	#search-box {
+		width: 100%;
+		padding: 15px 20px 15px 50px;
+		font-size: 1.2rem;
+		border-radius: 30px;
+		border: 1px solid #ccc;
+		box-sizing: border-box;
+	}
+	/* Slideshow container */
+	.slideshow-container {
+		max-width: 1000px;
+		position: relative;
+		margin: auto;
+		margin-top: 20px;
+	}
+
+	.slide {
+		display: none;
+	}
+
+	.slide img {
+		width: 100%;
+		vertical-align: middle;
+	}
+
+	/* Fading animation */
+	.fade {
+		animation-name: fade;
+		animation-duration: 1.5s;
+	}
+
+	@keyframes fade {
+		from {opacity: .4}
+		to {opacity: 1}
+	}
+
 	.filter-container {
 		margin-bottom: 1rem;
 		display: flex;
