@@ -42,7 +42,7 @@ const base = import.meta.env.BASE_URL;
                 </div>
             </header>
             <div class="article-content">
-                {explanation.image && <img src={explanation.image} alt={explanation.title} class="article-image" />}
+                {explanation.image && <img src={`/sema/${explanation.image}`} alt={explanation.title} class="article-image" />}
                 <p>{explanation.content}</p>
             </div>
         </article>
