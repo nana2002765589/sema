@@ -16,7 +16,7 @@ const uniqueInsightCategories = [...new Set(allInsightCategories)];
 ---
 
 <Layout title="SEMA - 作品">
-	<p class="description">Anime Comic Hub Japan（アニコミ）は、マンガ・アニメ作品を より深く楽しむための機能を備えたポータルサイトです。</p>
+	<p class="description">Anime Comic Hub Japan（アニコミ）は、マンガ・アニメ作品をより深く楽しむための機能を備えたポータルサイトです。</p>
 	<div class="search-container">
 		<img src={`${base}/icons/search.svg`} alt="Search" class="search-icon" />
 		<input type="search" id="search-box" placeholder="検索">
@@ -263,10 +263,15 @@ const uniqueInsightCategories = [...new Set(allInsightCategories)];
 </Layout>
 
 <style>
+	.description {
+		position: relative;
+		margin: 20px auto;
+		width: 90%;
+	}
 	.search-container {
 		position: relative;
 		margin: 20px auto;
-		width: 50%;
+		width: 90%;
 	}
 	.search-icon {
 		position: absolute;
