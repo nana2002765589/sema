@@ -28,12 +28,32 @@ const base = import.meta.env.BASE_URL;
     </div>
     <a href=`${base}/login` class="login-button">ログイン</a>
   </nav>
+  <div class="menu-container">
+    <ul>
+      <li><a href={base}>トップページ</a></li>
+      <li><a href=`${base}/mypage`>マイページ</a></li>
+    </ul>
+  </div>
 </header>
+
+<script>
+  const hamburger = document.querySelector('.hamburger');
+  const menu = document.querySelector('.menu-container');
+
+  hamburger.addEventListener('click', () => {
+    menu.classList.toggle('is-open');
+    hamburger.classList.toggle('is-open');
+  });
+</script>
 
 <style>
   header {
     background-color: #fff;
     border-bottom: 1px solid #e0e0e0;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    width: 100%;
   }
   nav {
     display: flex;
@@ -49,7 +69,7 @@ const base = import.meta.env.BASE_URL;
     border-color: #003399;
     /*padding: 0;*/
     cursor: pointer;
-    z-index: 2;
+    z-index: 1001;
   }
   .logo {
     position: absolute;
@@ -69,5 +89,38 @@ const base = import.meta.env.BASE_URL;
     font-size: 14px;
     font-weight: bold;
     z-index: 2;
+  }
+  .menu-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100%;
+    background-color: #fff;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    z-index: 1000;
+    padding-top: 80px;
+  }
+  .menu-container.is-open {
+    display: block;
+  }
+  .menu-container ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .menu-container li a {
+    display: block;
+    padding: 15px 20px;
+    color: #333;
+    text-decoration: none;
+    font-size: 18px;
+  }
+  .menu-container li a:hover {
+    background-color: #f0f0f0;
+  }
+  .hamburger.is-open {
+    /* You can add styles for the "open" state of the hamburger, like turning it into an X */
   }
 </style>

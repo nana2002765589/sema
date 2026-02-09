@@ -20,7 +20,7 @@ const tabs = [
                 let isActive = false;
                 const tabPath = tab.href;
 
-                if (tab.name === '作品') {
+                if (tab.name === '作品一覧') {
                     const projectsRoot = base === '/' ? '/' : base;
                     // Active if it's the root page or a projects page, but not insights or explanation
                     isActive = (normalizedPathname === projectsRoot || normalizedPathname.startsWith(`${projectsRoot}/projects`)) && !normalizedPathname.startsWith(`${base}/insights`) && !normalizedPathname.startsWith(`${base}/explanation`);

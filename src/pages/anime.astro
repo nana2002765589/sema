@@ -10,14 +10,19 @@ const allProjectCategories = projects.flatMap(p => p.category);
 const uniqueProjectCategories = [...new Set(allProjectCategories)];
 ---
 
-<Layout title="SEMA - アニメ">
+<Layout title="SEMA - アニメ" active="anime">
 	<SubHeader />
 
 	<div id="projects-section">
 		<section>
-			<h2>アニメ</h2>
+			<div class="title-container">
+				<h2>アニメ</h2>
+				<button id="category-toggle-btn" aria-label="カテゴリーフィルター表示切替">
+					<img src=`${base}/icons/grid.svg` alt="カテゴリー" />
+				</button>
+			</div>
 
-			<div class="filter-container" id="project-category-filters">
+			<div class="filter-container hidden" id="project-category-filters">
 				<strong>カテゴリー:</strong>
 				<button class="filter-btn active" data-category="All">すべて</button>
 				{uniqueProjectCategories.map(category => (
@@ -48,8 +53,13 @@ const uniqueProjectCategories = [...new Set(allProjectCategories)];
 
 	<script>
 		document.addEventListener('DOMContentLoaded', () => {
+			const categoryToggleBtn = document.getElementById('category-toggle-btn');
 			const projectCategoryFilters = document.querySelector('#project-category-filters');
 			const projectCards = document.querySelectorAll('#projects-section .card');
+
+			categoryToggleBtn.addEventListener('click', () => {
+				projectCategoryFilters.classList.toggle('hidden');
+			});
 
 			let selectedProjectCategory = 'All';
 			
@@ -119,6 +129,35 @@ const uniqueProjectCategories = [...new Set(allProjectCategories)];
 </Layout>
 
 <style>
+	.title-container {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		margin-bottom: 1rem;
+	}
+
+	#category-toggle-btn {
+		background: none;
+		border: 1px solid #ddd;
+		border-radius: 50%;
+		width: 40px;
+		height: 40px;
+		cursor: pointer;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		padding: 0;
+	}
+
+	#category-toggle-btn img {
+		width: 24px;
+		height: 24px;
+	}
+
+	.filter-container.hidden {
+		display: none;
+	}
+
 	.filter-container {
 		margin-bottom: 1rem;
 		display: flex;
@@ -190,8 +229,8 @@ const uniqueProjectCategories = [...new Set(allProjectCategories)];
 	.rank-badge {
 		position: absolute;
 		top: -10px;
-		left: -10px;
-		background-color: #ff4757;
+		left: -12px;
+		background-color: #ff0000;
 		color: white;
 		padding: 0.5em 0.8em;
 		border-radius: 20px;

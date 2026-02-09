@@ -8,13 +8,18 @@ const uniqueCategories = [...new Set(allCategories)];
 const base = import.meta.env.BASE_URL;
 ---
 
-<Layout title="SEMA - 考察">
+<Layout title="SEMA - 考察" active="insight">
 	<SubHeader />
 
 	<section>
-		<h2>考察</h2>
+		<div class="title-container">
+			<h2>考察</h2>
+			<button id="category-toggle-btn" aria-label="カテゴリーフィルター表示切替">
+				<img src=`${base}/icons/grid.svg` alt="カテゴリー" />
+			</button>
+		</div>
 
-		<div class="filter-container" id="category-filters">
+		<div class="filter-container hidden" id="category-filters">
 			<strong>カテゴリー:</strong>
 			<button class="filter-btn active" data-category="All">すべて</button>
 			{uniqueCategories.map(category => (
@@ -39,80 +44,116 @@ const base = import.meta.env.BASE_URL;
 	</section>
 
 	<script>
-		const categoryFilters = document.querySelector('#category-filters');
-		const insightCards = document.querySelectorAll('.card');
+		document.addEventListener('DOMContentLoaded', () => {
+			const categoryToggleBtn = document.getElementById('category-toggle-btn');
+			const categoryFilters = document.querySelector('#category-filters');
+			const insightCards = document.querySelectorAll('.card');
 
-		// Filtering logic
-		let selectedCategory = 'All';
-
-		function applyFilters() {
-			insightCards.forEach(card => {
-				const cardCategories = card.dataset.categories.split(' ');
-				const categoryMatch = selectedCategory === 'All' || cardCategories.includes(selectedCategory);
-				if (categoryMatch) {
-					card.style.display = 'block';
-				} else {
-					card.style.display = 'none';
-				}
+			categoryToggleBtn.addEventListener('click', () => {
+				categoryFilters.classList.toggle('hidden');
 			});
-		}
 
-		categoryFilters.addEventListener('click', (e) => {
-			const target = e.target;
-			if (!target.matches('.filter-btn')) return;
+			// Filtering logic
+			let selectedCategory = 'All';
 
-			categoryFilters.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-			target.classList.add('active');
-			selectedCategory = target.dataset.category;
-			applyFilters();
-		});
-
-		applyFilters();
-
-		// Bookmark logic
-		const bookmarkButtons = document.querySelectorAll('.bookmark-btn');
-		let bookmarkedInsights = JSON.parse(localStorage.getItem('bookmarkedInsights')) || [];
-
-		function toggleBookmark(id) {
-			const insightId = parseInt(id, 10);
-			const index = bookmarkedInsights.indexOf(insightId);
-
-			if (index > -1) {
-				bookmarkedInsights.splice(index, 1); // Remove from bookmarks
-			} else {
-				bookmarkedInsights.push(insightId); // Add to bookmarks
+			function applyFilters() {
+				insightCards.forEach(card => {
+					const cardCategories = card.dataset.categories.split(' ');
+					const categoryMatch = selectedCategory === 'All' || cardCategories.includes(selectedCategory);
+					if (categoryMatch) {
+						card.style.display = 'block';
+					} else {
+						card.style.display = 'none';
+					}
+				});
 			}
-			localStorage.setItem('bookmarkedInsights', JSON.stringify(bookmarkedInsights));
-			updateBookmarkButtons();
-		}
 
-		function updateBookmarkButtons() {
-			insightCards.forEach(card => {
-				const id = parseInt(card.dataset.id, 10);
-				const button = card.querySelector('.bookmark-btn');
-				if (bookmarkedInsights.includes(id)) {
-					button.classList.add('active');
+			categoryFilters.addEventListener('click', (e) => {
+				const target = e.target;
+				if (!target.matches('.filter-btn')) return;
+
+				categoryFilters.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+				target.classList.add('active');
+				selectedCategory = target.dataset.category;
+				applyFilters();
+			});
+
+			applyFilters();
+
+			// Bookmark logic
+			const bookmarkButtons = document.querySelectorAll('.bookmark-btn');
+			let bookmarkedInsights = JSON.parse(localStorage.getItem('bookmarkedInsights')) || [];
+
+			function toggleBookmark(id) {
+				const insightId = parseInt(id, 10);
+				const index = bookmarkedInsights.indexOf(insightId);
+
+				if (index > -1) {
+					bookmarkedInsights.splice(index, 1); // Remove from bookmarks
 				} else {
-					button.classList.remove('active');
+					bookmarkedInsights.push(insightId); // Add to bookmarks
 				}
-			});
-		}
+				localStorage.setItem('bookmarkedInsights', JSON.stringify(bookmarkedInsights));
+				updateBookmarkButtons();
+			}
 
-		bookmarkButtons.forEach(button => {
-			button.addEventListener('click', (e) => {
-				e.preventDefault();
-				e.stopPropagation();
-				const card = button.closest('.card');
-				toggleBookmark(card.dataset.id);
+			function updateBookmarkButtons() {
+				insightCards.forEach(card => {
+					const id = parseInt(card.dataset.id, 10);
+					const button = card.querySelector('.bookmark-btn');
+					if (bookmarkedInsights.includes(id)) {
+						button.classList.add('active');
+					} else {
+						button.classList.remove('active');
+					}
+				});
+			}
+
+			bookmarkButtons.forEach(button => {
+				button.addEventListener('click', (e) => {
+					e.preventDefault();
+					e.stopPropagation();
+					const card = button.closest('.card');
+					toggleBookmark(card.dataset.id);
+				});
 			});
+
+			// Initial state update on page load
+			updateBookmarkButtons();
 		});
-
-		// Initial state update on page load
-		updateBookmarkButtons();
 	</script>
 </Layout>
 
 <style>
+	.title-container {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		margin-bottom: 1rem;
+	}
+
+	#category-toggle-btn {
+		background: none;
+		border: 1px solid #ddd;
+		border-radius: 50%;
+		width: 40px;
+		height: 40px;
+		cursor: pointer;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		padding: 0;
+	}
+
+	#category-toggle-btn img {
+		width: 24px;
+		height: 24px;
+	}
+
+	.filter-container.hidden {
+		display: none;
+	}
+
 	.filter-container {
 		margin-bottom: 1rem;
 		display: flex;

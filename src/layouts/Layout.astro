@@ -4,9 +4,10 @@ import Footer from '../components/Footer.astro';
 
 export interface Props {
 	title?: string;
+	active?: string;
 }
 
-const { title = "Sema" } = Astro.props;
+const { title = "Sema", active } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -20,7 +21,7 @@ const { title = "Sema" } = Astro.props;
 		<title>{title}</title>
 	</head>
 	<body>
-		<Header />
+		<Header active={active} />
 		<main>
 			<slot />
 		</main>
