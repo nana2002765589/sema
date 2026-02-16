@@ -34,13 +34,13 @@ const uniqueProjectCategories = [...new Set(allProjectCategories)];
 				{projects.map((project, index) => (
 					<div class="card" data-categories={project.category.join(' ')} data-id={project.id}>
 						<a href={`${base}/projects/${project.id}`} class="card-link">
-							<div class="rank-badge">No.{index + 1}</div>
-							<h3>{project.title}</h3>
-							<p>{project.synopsis}</p>
-							<div class="categories">
-								{project.category.map(cat => <span class="category">{cat}</span>)}
+							<div class="card-content">
+								<img src={`${base}/thumbnails/${project.id}.jpg`} alt={project.title} class="thumbnail" />
+								<div class="card-text">
+									<div class="rank-badge">No.{index + 1}</div>
+									<h3>{project.title}</h3>
+								</div>
 							</div>
-							<div class="views">👁️ {project.views.toLocaleString()}</div>
 						</a>
 						<button class="bookmark-btn" aria-label="ブックマークに追加">
 							<img src={`${base}/icons/bookmark.svg`} alt="ブックマーク" />
@@ -204,32 +204,17 @@ const uniqueProjectCategories = [...new Set(allProjectCategories)];
 		flex-direction: column;
 		flex-grow: 1;
 	}
-	.card p {
-		flex-grow: 1;
-	}
 	.card:hover {
 		box-shadow: 0 4px 8px rgba(0,0,0,0.15);
 		transform: translateY(-2px);
 	}
 	.card h3 {
 		margin-top: 0;
-		padding-top: 1.5rem; /* space for the rank badge */
-	}
-	.categories {
-		margin-top: 1rem;
-	}
-	.category {
-		display: inline-block;
-		background-color: #eee;
-		padding: 0.25em 0.75em;
-		border-radius: 15px;
-		font-size: 0.8rem;
-		margin-right: 0.5rem;
 	}
 	.rank-badge {
 		position: absolute;
-		top: -10px;
-		left: -12px;
+		top: -40px;
+		left: -90px;
 		background-color: #ff0000;
 		color: white;
 		padding: 0.5em 0.8em;
@@ -238,12 +223,6 @@ const uniqueProjectCategories = [...new Set(allProjectCategories)];
 		font-weight: bold;
 		box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 		z-index: 1;
-	}
-	.views {
-		margin-top: 1rem;
-		font-size: 0.9rem;
-		color: #555;
-		text-align: right;
 	}
 	.bookmark-btn, .bookmark-btn-insights {
 		position: absolute;
@@ -269,5 +248,19 @@ const uniqueProjectCategories = [...new Set(allProjectCategories)];
 	.bookmark-btn.active img, .bookmark-btn-insights.active img {
 		opacity: 1;
 		filter: grayscale(0%) opacity(1);
+	}
+	.card-content {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+	}
+	.thumbnail {
+		width: 50px; /* 1/8 is ambiguous, so using a fixed size */
+		height: auto;
+		object-fit: cover;
+	}
+	.card-text {
+		position: relative;
+		padding-left: 20px; /* space for the rank badge */
 	}
 </style>
