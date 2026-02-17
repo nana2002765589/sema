@@ -29,6 +29,7 @@ const relatedExplanations = explanations.filter(i => {
 const base = import.meta.env.BASE_URL;
 ---
 <Layout title={explanation.title}>
+  <a href={base}>&larr; Back to all projects</a>
     <SubHeader showTabs={false} />
     <main class="explanation-detail-page">
         <article class="explanation-article">

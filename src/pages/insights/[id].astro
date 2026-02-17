@@ -29,6 +29,7 @@ const relatedInsights = insights.filter(i => {
 const base = import.meta.env.BASE_URL;
 ---
 <Layout title={insight.title}>
+  <a href={base}>&larr; Back to all projects</a>
     <SubHeader showTabs={false} />
     <main class="insight-detail-page">
         <article class="insight-article">
