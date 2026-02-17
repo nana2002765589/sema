@@ -1,6 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import projectsData from "../assets/projects.json";
+import projectsData from "../assets/anime_projects.json";
 import SubHeader from '../components/SubHeader.astro';
 
 const base = import.meta.env.BASE_URL;
@@ -28,7 +28,7 @@ const uniqueProjectCategories = [...new Set(allProjectCategories)];
 			<img src={`${base}/ribon.jpeg`} alt="Ribon">
 		</div>
 	</div>
-	
+
 	<SubHeader />
 
 	<div id="projects-section">
@@ -53,7 +53,7 @@ const uniqueProjectCategories = [...new Set(allProjectCategories)];
 					<div class="card" data-categories={project.category.join(' ')} data-id={project.id}>
 						<a href={`${base}/projects/${project.id}`} class="card-link">
 							<div class="card-content">
-								<img src={`${base}/thumbnails/${project.id}.jpg`} alt={project.title} class="thumbnail" />
+								<img src={`${base}/animethumbnails/${project.id}.jpg`} alt={project.title} class="thumbnail" />
 								<div class="card-text">
 									<div class="rank-badge">No.{index + 1}</div>
 									<h3>{project.title}</h3>
