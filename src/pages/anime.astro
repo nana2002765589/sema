@@ -11,6 +11,24 @@ const uniqueProjectCategories = [...new Set(allProjectCategories)];
 ---
 
 <Layout title="SEMA - アニメ" active="anime">
+	<p class="description">Anime Comic Hub Japan（アニコミ）は、マンガ・アニメ作品をより深く楽しむための機能を備えたポータルサイトです。</p>
+	<div class="search-container">
+		<img src={`${base}/icons/search.svg`} alt="Search" class="search-icon" />
+		<input type="search" id="search-box" placeholder="検索">
+	</div>
+
+	<div class="slideshow-container">
+		<div class="slide fade">
+			<img src={`${base}/jumpallstar.jpg`} alt="Jump All Star">
+		</div>
+		<div class="slide fade">
+			<img src={`${base}/jyannmaga.jpg`} alt="Jyannmaga">
+		</div>
+		<div class="slide fade">
+			<img src={`${base}/ribon.jpeg`} alt="Ribon">
+		</div>
+	</div>
+	
 	<SubHeader />
 
 	<div id="projects-section">
