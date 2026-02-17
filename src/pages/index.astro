@@ -78,7 +78,7 @@ const uniqueInsightCategories = [...new Set(allInsightCategories)];
                   alt={project.title}
                 />
                 <h3>{project.title}</h3>
-                <p>{project.synopsis}</p>
+                {/* <p>{project.synopsis}</p> */}
                 <div class="categories">
                   {project.category.map((cat) => (
                     <span class="category">{cat}</span>
@@ -499,8 +499,8 @@ const uniqueInsightCategories = [...new Set(allInsightCategories)];
     padding-top: 1.5rem; /* space for the rank badge */
   }
   .card img {
-    width: 100%;
-    height: 600px;
+    width: 16.66%;
+    height: 100px;
     object-fit: cover;
   }
   .categories {
@@ -518,7 +518,7 @@ const uniqueInsightCategories = [...new Set(allInsightCategories)];
     position: absolute;
     top: -10px;
     left: -10px;
-    background-color: #ff4757;
+    background-color: #ff0000;
     color: white;
     padding: 0.5em 0.8em;
     border-radius: 20px;
