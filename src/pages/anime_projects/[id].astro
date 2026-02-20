@@ -1,0 +1,211 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import projects from '../../assets/anime_projects.json';
+
+export function getStaticPaths() {
+    return projects.map((project) => {
+        return {
+            params: { id: String(project.id) },
+            props: { project }
+        };
+    });
+}
+
+const { project } = Astro.props;
+const base = import.meta.env.BASE_URL;
+---
+
+<Layout title={project.title}>
+    <div class="project-details-container" data-id={project.id}>
+        <div class="title-container">
+            <h1>{project.title}</h1>
+            <button class="bookmark-btn" aria-label="ブックマークに追加">
+                <img src={`${base}/icons/bookmark.svg`} alt="ブックマーク" />
+            </button>
+        </div>
+        <div class="categories">
+            {project.category.map(cat => <span class="category">{cat}</span>)}
+        </div>
+
+        <details open>
+            <summary>
+                <h2>あらすじ</h2>
+            </summary>
+            <img src={`/sema/animethumbnails/${project.id}.jpeg`} alt={project.title} >
+            <div class="details-content">
+                <p>{project.synopsis}</p>
+            </div>
+        </details>
+
+        <details>
+            <summary>
+                <h2>クレジット</h2>
+            </summary>
+            <div class="details-content">
+                <p>{project.credits}</p>
+            </div>
+        </details>
+
+        <details>
+            <summary>
+                <h2>キャラクター紹介</h2>
+            </summary>
+            <div class="details-content">
+                <p>{project.characters}</p>
+            </div>
+        </details>
+
+        <details>
+            <summary>
+                <h2>舞台背景・時代背景</h2>
+            </summary>
+            <div class="details-content">
+                <p>{project.setting}</p>
+            </div>
+        </details>
+
+        <details>
+            <summary>
+                <h2>地図</h2>
+            </summary>
+            <div class="details-content">
+                {project.map_url && <img src={project.map_url} alt={`${project.title} Map`} />}
+            </div>
+        </details>
+
+        <details>
+            <summary>
+                <h2>解説</h2>
+            </summary>
+            <div class="details-content">
+                <p>{project.commentary}</p>
+            </div>
+        </details>
+
+        <details>
+            <summary>
+                <h2>考察</h2>
+            </summary>
+            <div class="details-content">
+                <p>{project.analysis}</p>
+            </div>
+        </details>
+    </div>
+    <script define:vars={{ projectId: project.id }}>
+		const bookmarkButton = document.querySelector('.bookmark-btn');
+		let bookmarkedProjects = JSON.parse(localStorage.getItem('bookmarkedProjects')) || [];
+
+		function toggleBookmark(id) {
+			const projId = parseInt(id, 10);
+			const index = bookmarkedProjects.indexOf(projId);
+
+			if (index > -1) {
+				bookmarkedProjects.splice(index, 1);
+			} else {
+				bookmarkedProjects.push(projId);
+			}
+			localStorage.setItem('bookmarkedProjects', JSON.stringify(bookmarkedProjects));
+			updateBookmarkButton();
+		}
+
+		function updateBookmarkButton() {
+			const projId = parseInt(projectId, 10);
+			if (bookmarkedProjects.includes(projId)) {
+				bookmarkButton.classList.add('active');
+			} else {
+				bookmarkButton.classList.remove('active');
+			}
+		}
+
+		bookmarkButton.addEventListener('click', () => {
+			toggleBookmark(projectId);
+		});
+
+		updateBookmarkButton();
+	</script>
+</Layout>
+
+<style>
+    .project-details-container {
+        max-width: 800px;
+        margin: 0 auto;
+        line-height: 1.6;
+    }
+    .title-container {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        border-bottom: 2px solid #eee;
+        padding-bottom: 0.5rem;
+    }
+    a {
+        color: #007bff;
+        text-decoration: none;
+    }
+    a:hover {
+        text-decoration: underline;
+    }
+    h1 {
+        margin-top: 1rem;
+        margin-bottom: 0;
+        border-bottom: none;
+    }
+    h2 {
+        display: inline;
+        font-size: 1.25rem;
+    }
+    .categories {
+        margin: 1rem 0;
+    }
+    .category {
+        display: inline-block;
+        background-color: #eee;
+        padding: 0.25em 0.75em;
+        border-radius: 15px;
+        font-size: 0.8rem;
+        margin-right: 0.5rem;
+    }
+    details {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        margin-top: 1.5rem;
+    }
+    details[open] {
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    summary {
+        padding: 1rem;
+        cursor: pointer;
+        font-weight: bold;
+    }
+    .details-content {
+        padding: 0 1rem 1rem 1rem;
+    }
+    .details-content img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        margin-top: 1rem;
+    }
+    .bookmark-btn {
+		background: none;
+		border: none;
+		cursor: pointer;
+		padding: 0;
+		width: 24px;
+		height: 24px;
+	}
+	.bookmark-btn img {
+		width: 100%;
+		height: 100%;
+		opacity: 0.5;
+		transition: opacity 0.2s;
+	}
+	.bookmark-btn:hover img {
+		opacity: 1;
+	}
+	.bookmark-btn.active img {
+		opacity: 1;
+		filter: grayscale(0%) opacity(1);
+	}
+</style>
